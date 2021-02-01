@@ -20,10 +20,10 @@ LFLAGS		=	-L./$(LIBDIR) -lft -lmlx
 RM			=	/bin/rm -rf
 UNAME		:=	$(shell uname -s)
 
-ifeq ($(UNAME_S),Linux)
+ifeq ($(UNAME),Linux)
 	LFLAGS += -lXext -lX11
 endif
-ifeq ($(UNAME_S),Darwin)
+ifeq ($(UNAME),Darwin)
 	LFLAGS += -framework OpenGL -framework AppKit
 endif
 
@@ -41,8 +41,7 @@ $(OBJDIR)/%.o:	%.c | $(OBJDIR)
 
 $(NAME):		$(OBJ)
 				make -C $(LIBDIR)
-				cp $(LIBDIR)/$(LIB) ./$(NAME)
-				$(AR) $(ARFLAGS) $@ $^
+				$(CC) $(CFLAGS) -o $@ $^ $(LFLAGS)
 
 $(OBJDIR):
 				mkdir $(OBJDIR)
