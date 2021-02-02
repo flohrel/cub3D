@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/01 17:22:02 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/02 21:05:56 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ int		main(void)
 //	draw_circle(&img, 42, 42, 42);
 //	draw_square(&img, 128, 128, 42);
 
-	x = 390;
+	x = 400;
 	y = 400;
 	j = -1;
 	while (++j < 7)
 	{
 		i = -1;
 		while (++i < 10)
-			draw_semicircle(&img, x, y, x - i, rainbow_colors[j]);
+			draw_semicircle(&img, x, y, ((y - (20 * j)) / 2) - i, rainbow_colors[j]);
 	}
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 //	mlx_key_hook(mlx_win, exit_key, (void *)0);

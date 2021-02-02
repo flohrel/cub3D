@@ -21,7 +21,7 @@ RM			=	/bin/rm -rf
 UNAME		:=	$(shell uname -s)
 
 ifeq ($(UNAME),Linux)
-	LFLAGS += -lXext -lX11
+	LFLAGS += -lXext -lX11 -lm
 endif
 ifeq ($(UNAME),Darwin)
 	LFLAGS += -framework OpenGL -framework AppKit
