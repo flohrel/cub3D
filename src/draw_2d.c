@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 13:04:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/03 14:40:41 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/04 20:56:49 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	draw_square(t_data *data, int xpos, int ypos, int size)
 	}
 }
 
-void	draw_rainbow(t_data *img, int x, int y)
+void	draw_rainbow(t_data *img, int x, int y, int mod)
 {
 	int		i;
 	int		j;
@@ -84,6 +84,6 @@ void	draw_rainbow(t_data *img, int x, int y)
 	{
 		i = -1;
 		while (++i < 10)
-			draw_semicircle(img, x, y, ((y - (20 * j)) / 2) - i, rainbow_colors[j]);
+			draw_semicircle(img, x, y, ((y - (20 * j)) / 2) - i, rainbow_colors[(j + mod) % 7]);
 	}
 }
