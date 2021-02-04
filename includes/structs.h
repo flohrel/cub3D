@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/04 17:48:07 by flohrel          ###   ########.fr       */
+/*   Created: 2021/02/03 13:48:39 by flohrel           #+#    #+#             */
+/*   Updated: 2021/02/03 13:52:54 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
-# include <mlx.h>
-# include "../libft/incld/libft.h"
-# include "structs.h"
-# include "draw_2d.h"
-# include "keycode.h"
+typedef struct	s_vars
+{
+	void	*mlx;
+	void	*win;
+}				t_vars;
 
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT	800
-# endif
-
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH		600
-# endif
+typedef struct	s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 #endif

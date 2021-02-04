@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   draw_2d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/04 17:48:07 by flohrel          ###   ########.fr       */
+/*   Created: 2021/02/03 13:07:14 by flohrel           #+#    #+#             */
+/*   Updated: 2021/02/03 15:30:43 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef DRAW_2D_H
+# define DRAW_2D_H
 
 # include <mlx.h>
-# include "../libft/incld/libft.h"
+# include <math.h>
+# include "color.h"
 # include "structs.h"
-# include "draw_2d.h"
-# include "keycode.h"
+# include "stdio.h"
 
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT	800
-# endif
-
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH		600
-# endif
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	draw_rainbow(t_data *img, int x, int y);
+void	draw_circle(t_data *data, int xpos, int ypos, int radius);
+void	draw_semicircle(t_data *data, int xpos, int ypos, int radius, int color);
+void	draw_square(t_data *data, int xpos, int ypos, int size);
 
 #endif

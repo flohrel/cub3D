@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   keycode.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/04 17:48:07 by flohrel          ###   ########.fr       */
+/*   Created: 2021/02/04 17:43:43 by flohrel           #+#    #+#             */
+/*   Updated: 2021/02/04 17:47:28 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef KEYCODE_H
+# define KEYCODE_H
 
-# include <mlx.h>
-# include "../libft/incld/libft.h"
-# include "structs.h"
-# include "draw_2d.h"
-# include "keycode.h"
-
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT	800
-# endif
-
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH		600
-# endif
+# define ESCAPE		65307
+# define FORWARD	119
+# define BACKWARD	115
+# define LEFT		97
+# define RIGHT		100
+# define TURN_LEFT	65361
+# define TURN_RIGHT	65363
 
 #endif
+

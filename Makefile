@@ -9,7 +9,8 @@ OBJDIR		=	obj
 LIBDIR		=	libft
 INCLDIR		=	includes
 
-SRC			=	main.c
+SRC			=	main.c \
+				draw_2d.c
 LIB			=	libft.a
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)
 
@@ -51,10 +52,8 @@ bonus:
 
 clean:
 				$(RM) $(OBJ)
-				make -C $(LIBDIR) clean
 
 fclean:			clean
 				$(RM) $(NAME) $(OBJDIR)
-				make -C $(LIBDIR) fclean
 
 re:				fclean all
