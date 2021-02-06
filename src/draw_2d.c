@@ -6,21 +6,21 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 13:04:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/04 20:56:49 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/06 19:21:51 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "draw_2d.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
-void	draw_circle(t_data *data, int xpos, int ypos, int radius)
+void	draw_circle(t_img *img, int xpos, int ypos, int radius)
 {
 	int		x;
 	int		y;
@@ -33,12 +33,12 @@ void	draw_circle(t_data *data, int xpos, int ypos, int radius)
 	{
 		y = sin(radiant) * radius;
 		x = cos(radiant) * radius;
-		my_mlx_pixel_put(data, xpos + x, ypos + y, RED);
+		my_mlx_pixel_put(img, xpos + x, ypos + y, RED);
 		radiant += 0.1;
 	}
 }
 
-void	draw_semicircle(t_data *data, int xpos, int ypos, int radius, int color)
+void	draw_semicircle(t_img *img, int xpos, int ypos, int radius, int color)
 {
 	int		x;
 	int		y;
@@ -51,12 +51,12 @@ void	draw_semicircle(t_data *data, int xpos, int ypos, int radius, int color)
 	{
 		y = sin(radiant) * radius;
 		x = cos(radiant) * radius;
-		my_mlx_pixel_put(data, xpos + x, ypos + y, color);
+		my_mlx_pixel_put(img, xpos + x, ypos + y, color);
 		radiant += 0.001;
 	}
 }
 
-void	draw_square(t_data *data, int xpos, int ypos, int size)
+void	draw_square(t_img *img, int xpos, int ypos, int size)
 {
 	int		x;
 	int		y;
@@ -68,12 +68,12 @@ void	draw_square(t_data *data, int xpos, int ypos, int size)
 		while (++x < size)
 		{
 			if (!y || ((y + 1) == size) || !x || ((x + 1) == size))
-				my_mlx_pixel_put(data, xpos + x, ypos + y, BLUE);
+				my_mlx_pixel_put(img, xpos + x, ypos + y, BLUE);
 		}
 	}
 }
 
-void	draw_rainbow(t_data *img, int x, int y, int mod)
+void	draw_rainbow(t_img *img, int x, int y, int mod)
 {
 	int		i;
 	int		j;

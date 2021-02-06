@@ -10,6 +10,7 @@ LIBDIR		=	libft
 INCLDIR		=	includes
 
 SRC			=	main.c \
+				map_test.c \
 				draw_2d.c
 LIB			=	libft.a
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)

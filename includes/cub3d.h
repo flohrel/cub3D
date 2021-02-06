@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/04 20:48:29 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/06 21:10:22 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CUB3D_H
 
 # include <stdlib.h>
+# include <time.h>
+# include <stdbool.h>
 # include "mlx.h"
 # include "../libft/incld/libft.h"
 # include "structs.h"
@@ -21,11 +23,17 @@
 # include "keycode.h"
 
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT	800
+#  define WIN_HEIGHT	640
 # endif
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH		600
+#  define WIN_WIDTH		480
 # endif
+
+int		raycaster(t_vars *vars, t_data *data);
+void	move_backward(t_vars *vars, t_time *time);
+void	move_forward(t_vars *vars, t_time *time);
+void	rotate_right(t_vars *vars, t_time *time);
+void	rotate_left(t_vars *vars, t_time *time);
 
 #endif
