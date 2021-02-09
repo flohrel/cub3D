@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/06 21:10:22 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/09 02:45:19 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 # include <time.h>
 # include <stdbool.h>
 # include "mlx.h"
-# include "../libft/incld/libft.h"
+# include "libft.h"
 # include "structs.h"
 # include "draw_2d.h"
 # include "keycode.h"
 
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT	640
+#  define WIN_HEIGHT	600
 # endif
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH		480
+#  define WIN_WIDTH		800
 # endif
 
 int		raycaster(t_vars *vars, t_data *data);

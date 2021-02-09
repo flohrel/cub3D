@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/07 00:58:35 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/09 02:44:19 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ int		raycaster(t_vars *vars, t_data *data)
 
 		//length of ray from one x or y-side to next x or y-side
 		double perpWallDist;
-		double deltaDistX = (data->yraydir == 0) ? 0 : ((data->xraydir == 0) ? 1 : abs(1 / data->xraydir));
-		double deltaDistY = (data->xraydir == 0) ? 0 : ((data->yraydir == 0) ? 1 : abs(1 / data->yraydir));
+		double deltaDistX = fabs(1 / data->xraydir);
+		double deltaDistY = fabs(1 / data->yraydir);
 
 		//what direction to step in x or y-direction (either +1 or -1)
 		int stepX;
