@@ -7,11 +7,11 @@ NAME		=	cub3D
 VPATH		=	src
 OBJDIR		=	obj
 LIBDIR		=	libft
-INCLDIR		=	includes
+INCLDIR		=	incld
 
 SRC			=	main.c \
 				map_test.c \
-				draw_2d.c
+				img_utils.c
 LIB			=	libft.a
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)
 

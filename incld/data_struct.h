@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   data_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/03 13:48:39 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/06 20:02:07 by flohrel          ###   ########.fr       */
+/*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
+/*   Updated: 2021/02/11 17:12:01 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
+#ifndef DATA_STRUCT_H
+# define DATA_STRUCT_H
 
 typedef struct	s_img
 {
@@ -54,4 +54,4 @@ typedef struct	s_vars
 	t_time	*time;
 }				t_vars;
 
-#endif
+# endif

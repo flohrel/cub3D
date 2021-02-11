@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 13:07:14 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/06 19:22:16 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/11 19:05:49 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <mlx.h>
 # include <math.h>
-# include "color.h"
 # include "structs.h"
 # include "stdio.h"
 

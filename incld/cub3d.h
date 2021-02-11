@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/09 02:45:19 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/11 17:18:19 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 # include <stdbool.h>
 # include "mlx.h"
 # include "libft.h"
-# include "structs.h"
-# include "draw_2d.h"
+# include "color.h"
+# include "math.h"
+# include "data_struct.h"
+# include "img_utils.h"
 # include "keycode.h"
 
 # ifndef WIN_HEIGHT
