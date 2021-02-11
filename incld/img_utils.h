@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:08:58 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/11 17:19:16 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/11 20:08:43 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <time.h>
 # include "mlx.h"
-# include "data_struct.h"
+# include "data_type.h"
 # include "color.h"
 # include "libft.h"
 

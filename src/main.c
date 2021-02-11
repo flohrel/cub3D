@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/11 19:02:21 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/11 21:13:41 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,18 @@ int		keybind(int keycode, t_vars *vars)
 {
 	if (keycode == ESCAPE)
 		exit_program(vars);
-	if (keycode == LEFT)
+	if (keycode == TURN_LEFT)
 		rotate_left(vars, vars->time);
-	if (keycode == RIGHT)
+	if (keycode == TURN_RIGHT)
 		rotate_right(vars, vars->time);
 	if (keycode == FORWARD)
 		move_forward(vars, vars->time);
 	if (keycode == BACKWARD)
 		move_backward(vars, vars->time);
+	if (keycode == LEFT)
+		strafe_left(vars, vars->time);
+	if (keycode == RIGHT)
+		strafe_right(vars, vars->time);
 	return (0);
 }
 

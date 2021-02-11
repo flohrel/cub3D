@@ -1,17 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_struct.h                                      :+:      :+:    :+:   */
+/*   data_type.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/11 17:12:01 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/11 22:40:48 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_STRUCT_H
-# define DATA_STRUCT_H
+#ifndef DATA_TYPE_H
+# define DATA_TYPE_H
+
+# ifndef WIN_HEIGHT
+#  define WIN_HEIGHT	600
+# endif
+
+# ifndef WIN_WIDTH
+#  define WIN_WIDTH		800
+# endif
 
 typedef struct	s_img
 {
@@ -21,6 +29,10 @@ typedef struct	s_img
 	int		line_length;
 	int		endian;
 }				t_img;
+
+typedef struct	s_vect
+{
+}				t_vect;
 
 typedef struct	s_data
 {

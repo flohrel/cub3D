@@ -4,13 +4,16 @@
 
 NAME		=	cub3D
 
-VPATH		=	src
+VPATH		=	src src/hook src/engine
 OBJDIR		=	obj
 LIBDIR		=	libft
 INCLDIR		=	incld
 
 SRC			=	main.c \
-				map_test.c \
+				raycaster.c \
+				cam_move.c \
+				cam_move2.c \
+				map.c \
 				img_utils.c
 LIB			=	libft.a
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)

@@ -1,99 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_test.c                                         :+:      :+:    :+:   */
+/*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/09 02:44:19 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/11 22:37:52 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-#define MAP_WIDTH	24
-#define MAP_HEIGHT	24
-
-int	worldMap[MAP_WIDTH][MAP_HEIGHT]=
-{
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
-
-void	rotate_left(t_vars *vars, t_time *time)
-{
-	t_data	*data;
-	double	oldxdir;
-	double	oldxplane;
-
-	data = vars->data;
-	oldxdir = data->xdir;
-	oldxplane = data->xplane;
-	data->xdir = data->xdir * cos(time->rot_speed) - data->ydir * sin(time->rot_speed);
-	data->ydir = oldxdir * sin(time->rot_speed) + data->ydir * cos(time->rot_speed);
-	data->xplane = data->xplane * cos(time->rot_speed) - data->yplane * sin(time->rot_speed);
-	data->yplane = oldxplane * sin(time->rot_speed) + data->yplane * cos(time->rot_speed);
-}
-
-void	rotate_right(t_vars *vars, t_time *time)
-{
-	t_data	*data;
-	double	oldxdir;
-	double	oldxplane;
-
-	data = vars->data;
-	oldxdir = data->xdir;
-	oldxplane = data->xplane;
-	data->xdir = data->xdir * cos(-(time->rot_speed)) - data->ydir * sin(-(time->rot_speed));
-	data->ydir = oldxdir * sin(-(time->rot_speed)) + data->ydir * cos(-(time->rot_speed));
-	data->xplane = data->xplane * cos(-(time->rot_speed)) - data->yplane * sin(-(time->rot_speed));
-	data->yplane = oldxplane * sin(-(time->rot_speed)) + data->yplane * cos(-(time->rot_speed));
-}
-
-void	move_forward(t_vars *vars, t_time *time)
-{
-	t_data	*data;
-
-	data = vars->data;
-	if (worldMap[(int)(data->xpos + data->xdir * time->move_speed)][(int)data->ypos] == false)
-		data->xpos += data->xdir * time->move_speed;
-	if (worldMap[(int)data->xpos][(int)(data->ypos + data->ydir * time->move_speed)] == false)
-		data->ypos += data->ydir * time->move_speed;
-}
-
-void	move_backward(t_vars *vars, t_time *time)
-{
-	t_data	*data;
-	
-	data = vars->data;
-	if (worldMap[(int)(data->xpos - data->xdir * time->move_speed)][(int)data->ypos] == false)
-		data->xpos -= data->xdir * time->move_speed;
-	if (worldMap[(int)data->xpos][(int)(data->ypos - data->ydir * time->move_speed)] == false)
-		data->ypos -= data->ydir * time->move_speed;
-}
+#include "engine.h"
 
 void	vertical_line(t_img *img, int x, int drawStart, int drawEnd, int color)
 {
@@ -117,6 +34,7 @@ int		raycaster(t_vars *vars, t_data *data)
 		data->xcam = 2 * x / (double)WIN_WIDTH - 1;
 		data->xraydir = data->xdir + data->xplane * data->xcam;
 		data->yraydir = data->ydir + data->yplane * data->xcam;
+
 		//which box of the map we're in
 		int mapX = (int)data->xpos;
 		int mapY = (int)data->ypos;
@@ -175,7 +93,7 @@ int		raycaster(t_vars *vars, t_data *data)
 				side = 1;
 			}
 			//Check if ray has hit a wall
-			if (worldMap[mapX][mapY] > 0)
+			if (g_map[mapX][mapY] > 0)
 				hit = 1;
 		}
 
@@ -197,7 +115,7 @@ int		raycaster(t_vars *vars, t_data *data)
 			drawEnd = WIN_HEIGHT - 1;
 
 		int color;
-		switch(worldMap[mapX][mapY])
+		switch(g_map[mapX][mapY])
 		{
 			case 1:  color = RED;  break;
 			case 2:  color = GREEN;  break;
