@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/11 22:37:52 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/12 05:42:50 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int		raycaster(t_vars *vars, t_data *data)
 		data->yraydir = data->ydir + data->yplane * data->xcam;
 
 		//which box of the map we're in
-		int mapX = (int)data->xpos;
-		int mapY = (int)data->ypos;
+		int mapX = (int)data->pos.x;
+		int mapY = (int)data->pos.y;
 
 		//length of ray from current position to next x or y-side
 		double sideDistX;
@@ -59,22 +59,22 @@ int		raycaster(t_vars *vars, t_data *data)
 		if (data->xraydir < 0)
 		{
 			stepX = -1;
-			sideDistX = (data->xpos - mapX) * deltaDistX;
+			sideDistX = (data->pos.x - mapX) * deltaDistX;
 		}
 		else
 		{
 			stepX = 1;
-			sideDistX = (mapX + 1.0 - data->xpos) * deltaDistX;
+			sideDistX = (mapX + 1.0 - data->pos.x) * deltaDistX;
 		}
 		if (data->yraydir < 0)
 		{
 			stepY = -1;
-			sideDistY = (data->ypos - mapY) * deltaDistY;
+			sideDistY = (data->pos.y - mapY) * deltaDistY;
 		}
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapY + 1.0 - data->ypos) * deltaDistY;
+			sideDistY = (mapY + 1.0 - data->pos.y) * deltaDistY;
 		}
 		//perform DDA
 		while (hit == 0)
@@ -99,9 +99,9 @@ int		raycaster(t_vars *vars, t_data *data)
 
 		//Calculate distance projected on camera direction (Euclidean distance will give fisheye effect!)
 		if (side == 0)
-			perpWallDist = (mapX - data->xpos + (1 - stepX) / 2) / data->xraydir;
+			perpWallDist = (mapX - data->pos.x + (1 - stepX) / 2) / data->xraydir;
 		else
-			perpWallDist = (mapY - data->ypos + (1 - stepY) / 2) / data->yraydir;
+			perpWallDist = (mapY - data->pos.y + (1 - stepY) / 2) / data->yraydir;
 
 		//Calculate height of line to draw on screen
 		int lineHeight = (int)(WIN_HEIGHT / perpWallDist);

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/11 21:13:41 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/12 05:41:59 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int		init_window(t_vars *vars)
 
 void	init_data(t_data *data, t_time *time)
 {
-	data->xpos = 22;
-	data->ypos = 12;
+	data->pos.x = 22;
+	data->pos.y = 12;
 	data->xdir = -1;
 	data->ydir = 0;
 	data->xplane = 0;

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/11 22:40:48 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/12 05:40:59 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ typedef struct	s_img
 
 typedef struct	s_vect
 {
+	double	x;
+	double	y;
 }				t_vect;
 
 typedef struct	s_data
 {
-	double	xpos;
-	double	ypos;
+	t_vect	pos;
 	double	xdir;
 	double	ydir;
 	double	xplane;

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 21:15:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/11 21:44:18 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/12 05:44:52 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	move_forward(t_vars *vars, t_time *time)
 	double	newypos;
 
 	data = vars->data;
-	newxpos = data->xpos + data->xdir * time->move_speed;
-	newypos = data->ypos + data->ydir * time->move_speed;
-	if (g_map[(int)newxpos][(int)data->ypos] == false)
-		data->xpos = newxpos;
-	if (g_map[(int)data->xpos][(int)newypos] == false)
-		data->ypos = newypos;
+	newxpos = data->pos.x + data->xdir * time->move_speed;
+	newypos = data->pos.y + data->ydir * time->move_speed;
+	if (g_map[(int)newxpos][(int)data->pos.y] == false)
+		data->pos.x = newxpos;
+	if (g_map[(int)data->pos.x][(int)newypos] == false)
+		data->pos.y = newypos;
 }
 
 void	move_backward(t_vars *vars, t_time *time)
@@ -34,12 +34,12 @@ void	move_backward(t_vars *vars, t_time *time)
 	double	newypos;
 
 	data = vars->data;
-	newxpos = data->xpos - data->xdir * time->move_speed;
-	newypos = data->ypos - data->ydir * time->move_speed;
-	if (g_map[(int)newxpos][(int)data->ypos] == false)
-		data->xpos = newxpos;
-	if (g_map[(int)data->xpos][(int)newypos] == false)
-		data->ypos = newypos;
+	newxpos = data->pos.x - data->xdir * time->move_speed;
+	newypos = data->pos.y - data->ydir * time->move_speed;
+	if (g_map[(int)newxpos][(int)data->pos.y] == false)
+		data->pos.x = newxpos;
+	if (g_map[(int)data->pos.x][(int)newypos] == false)
+		data->pos.y = newypos;
 }
 
 void	strafe_left(t_vars *vars, t_time *time)
@@ -49,12 +49,12 @@ void	strafe_left(t_vars *vars, t_time *time)
 	double	newypos;
 
 	data = vars->data;
-	newxpos = data->xpos - data->xplane * time->move_speed;
-	newypos = data->ypos - data->yplane * time->move_speed;
-	if (g_map[(int)newxpos][(int)data->ypos] == false)
-		data->xpos = newxpos;
-	if (g_map[(int)data->xpos][(int)newypos] == false)
-		data->ypos = newypos;
+	newxpos = data->pos.x - data->xplane * time->move_speed;
+	newypos = data->pos.y - data->yplane * time->move_speed;
+	if (g_map[(int)newxpos][(int)data->pos.y] == false)
+		data->pos.x = newxpos;
+	if (g_map[(int)data->pos.x][(int)newypos] == false)
+		data->pos.y = newypos;
 }
 
 void	strafe_right(t_vars *vars, t_time *time)
@@ -64,10 +64,10 @@ void	strafe_right(t_vars *vars, t_time *time)
 	double	newypos;
 
 	data = vars->data;
-	newxpos = data->xpos + data->xplane * time->move_speed;
-	newypos = data->ypos + data->yplane * time->move_speed;
-	if (g_map[(int)newxpos][(int)data->ypos] == false)
-		data->xpos = newxpos;
-	if (g_map[(int)data->xpos][(int)newypos] == false)
-		data->ypos = newypos;
+	newxpos = data->pos.x + data->xplane * time->move_speed;
+	newypos = data->pos.y + data->yplane * time->move_speed;
+	if (g_map[(int)newxpos][(int)data->pos.y] == false)
+		data->pos.x = newxpos;
+	if (g_map[(int)data->pos.x][(int)newypos] == false)
+		data->pos.y = newypos;
 }
