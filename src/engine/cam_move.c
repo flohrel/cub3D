@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 20:01:47 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/11 21:18:40 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/12 05:53:37 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	rotate_left(t_vars *vars, t_time *time)
 	double	yvector;
 
 	data = vars->data;
-	oldxdir = data->xdir;
-	oldxplane = data->xplane;
+	oldxdir = data->dir.x;
+	oldxplane = data->plane.x;
 	xvector = cos(time->rot_speed);
 	yvector = sin(time->rot_speed);
-	data->xdir = data->xdir * xvector - data->ydir * yvector;
-	data->ydir = oldxdir * yvector + data->ydir * xvector;
-	data->xplane = data->xplane * xvector - data->yplane * yvector;
-	data->yplane = oldxplane * yvector + data->yplane * xvector;
+	data->dir.x = data->dir.x * xvector - data->dir.y * yvector;
+	data->dir.y = oldxdir * yvector + data->dir.y * xvector;
+	data->plane.x = data->plane.x * xvector - data->plane.y * yvector;
+	data->plane.y = oldxplane * yvector + data->plane.y * xvector;
 }
 
 void	rotate_right(t_vars *vars, t_time *time)
@@ -40,12 +40,12 @@ void	rotate_right(t_vars *vars, t_time *time)
 	double	yvector;
 
 	data = vars->data;
-	oldxdir = data->xdir;
-	oldxplane = data->xplane;
+	oldxdir = data->dir.x;
+	oldxplane = data->plane.x;
 	xvector = cos(-(time->rot_speed));
 	yvector = sin(-(time->rot_speed));
-	data->xdir = data->xdir * xvector - data->ydir * yvector;
-	data->ydir = oldxdir * yvector + data->ydir * xvector;
-	data->xplane = data->xplane * xvector - data->yplane * yvector;
-	data->yplane = oldxplane * yvector + data->yplane * xvector;
+	data->dir.x = data->dir.x * xvector - data->dir.y * yvector;
+	data->dir.y = oldxdir * yvector + data->dir.y * xvector;
+	data->plane.x = data->plane.x * xvector - data->plane.y * yvector;
+	data->plane.y = oldxplane * yvector + data->plane.y * xvector;
 }

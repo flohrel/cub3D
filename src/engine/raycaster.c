@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/12 05:42:50 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/12 05:57:20 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int		raycaster(t_vars *vars, t_data *data)
 	while (++x < WIN_WIDTH)
 	{
 		data->xcam = 2 * x / (double)WIN_WIDTH - 1;
-		data->xraydir = data->xdir + data->xplane * data->xcam;
-		data->yraydir = data->ydir + data->yplane * data->xcam;
+		data->raydir.x = data->dir.x + data->plane.x * data->xcam;
+		data->raydir.y = data->dir.y + data->plane.y * data->xcam;
 
 		//which box of the map we're in
 		int mapX = (int)data->pos.x;
@@ -45,8 +45,8 @@ int		raycaster(t_vars *vars, t_data *data)
 
 		//length of ray from one x or y-side to next x or y-side
 		double perpWallDist;
-		double deltaDistX = fabs(1 / data->xraydir);
-		double deltaDistY = fabs(1 / data->yraydir);
+		double deltaDistX = fabs(1 / data->raydir.x);
+		double deltaDistY = fabs(1 / data->raydir.y);
 
 		//what direction to step in x or y-direction (either +1 or -1)
 		int stepX;
@@ -56,7 +56,7 @@ int		raycaster(t_vars *vars, t_data *data)
 		int side; //was a NS or a EW wall hit?
 
 		//calculate step and initial sideDist
-		if (data->xraydir < 0)
+		if (data->raydir.x < 0)
 		{
 			stepX = -1;
 			sideDistX = (data->pos.x - mapX) * deltaDistX;
@@ -66,7 +66,7 @@ int		raycaster(t_vars *vars, t_data *data)
 			stepX = 1;
 			sideDistX = (mapX + 1.0 - data->pos.x) * deltaDistX;
 		}
-		if (data->yraydir < 0)
+		if (data->raydir.y < 0)
 		{
 			stepY = -1;
 			sideDistY = (data->pos.y - mapY) * deltaDistY;
@@ -99,9 +99,9 @@ int		raycaster(t_vars *vars, t_data *data)
 
 		//Calculate distance projected on camera direction (Euclidean distance will give fisheye effect!)
 		if (side == 0)
-			perpWallDist = (mapX - data->pos.x + (1 - stepX) / 2) / data->xraydir;
+			perpWallDist = (mapX - data->pos.x + (1 - stepX) / 2) / data->raydir.x;
 		else
-			perpWallDist = (mapY - data->pos.y + (1 - stepY) / 2) / data->yraydir;
+			perpWallDist = (mapY - data->pos.y + (1 - stepY) / 2) / data->raydir.y;
 
 		//Calculate height of line to draw on screen
 		int lineHeight = (int)(WIN_HEIGHT / perpWallDist);

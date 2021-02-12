@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/12 05:41:59 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/12 07:12:24 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,6 @@ int		exit_program(t_vars *vars)
 	mlx_destroy_display(vars->mlx);
 	free(vars->mlx);
 	exit(0);
-	return (0);
-}
-
-int		keybind(int keycode, t_vars *vars)
-{
-	if (keycode == ESCAPE)
-		exit_program(vars);
-	if (keycode == TURN_LEFT)
-		rotate_left(vars, vars->time);
-	if (keycode == TURN_RIGHT)
-		rotate_right(vars, vars->time);
-	if (keycode == FORWARD)
-		move_forward(vars, vars->time);
-	if (keycode == BACKWARD)
-		move_backward(vars, vars->time);
-	if (keycode == LEFT)
-		strafe_left(vars, vars->time);
-	if (keycode == RIGHT)
-		strafe_right(vars, vars->time);
 	return (0);
 }
 
@@ -73,19 +54,41 @@ void	init_data(t_data *data, t_time *time)
 {
 	data->pos.x = 22;
 	data->pos.y = 12;
-	data->xdir = -1;
-	data->ydir = 0;
-	data->xplane = 0;
-	data->yplane = 0.66;
+	data->dir.x = -1;
+	data->dir.y = 0;
+	data->plane.x = 0;
+	data->plane.y = 0.66;
 	time->time = 0;
 	time->old_time = 0;
 }
 
+void	get_input(t_vars *vars, t_time *time, int kbflags)
+{
+	if (check_flag(kbflags, ESC))
+		exit_program(vars);
+	if (check_flag(kbflags, TL))
+		rotate_left(vars, time);
+	if (check_flag(kbflags, TR))
+		rotate_right(vars, time);
+	if (check_flag(kbflags, BW))
+		move_backward(vars, time);
+	if (check_flag(kbflags, FW))
+		move_forward(vars, time);
+	if (check_flag(kbflags, R))
+		strafe_right(vars, time);
+	if (check_flag(kbflags, L))
+		strafe_left(vars, time);
+}
+
 int		render_next_frame(t_vars *vars)
 {
-	ft_bzero(vars->img->addr, vars->img->line_length * WIN_HEIGHT);
+	t_img	*img;
+
+	img = vars->img;
+	ft_bzero(img->addr, img->line_length * WIN_HEIGHT);
 	raycaster(vars, vars->data);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->image, 0, 0);
+	get_input(vars, vars->time, vars->kbflags);
+	mlx_put_image_to_window(vars->mlx, vars->win, img->image, 0, 0);
 	get_fps(vars, vars->time);
 	return (0);
 }
@@ -100,11 +103,13 @@ int		main(void)
 	vars.img = &img;
 	vars.data = &data;
 	vars.time = &time;
+	vars.kbflags = 0;
 	if (init_window(&vars) == -1 ||
 		init_image(&vars, &img) == -1)
 		return (exit_program(&vars));
 	init_data(vars.data, vars.time);
-	mlx_hook(vars.win, 2, (1L << 0), keybind, &vars);
+	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
+	mlx_hook(vars.win, 3, (1L << 1), key_release, &(vars.kbflags));
 	mlx_loop_hook(vars.mlx, render_next_frame, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
