@@ -11,6 +11,7 @@ INCLDIR		=	incld
 
 SRC			=	main.c \
 				raycaster.c \
+				raycaster2.c \
 				cam_move.c \
 				cam_move2.c \
 				map.c \

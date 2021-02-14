@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/12 07:04:40 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/14 02:42:11 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,27 @@ typedef struct	s_vect
 	double	y;
 }				t_vect;
 
+typedef struct	s_ivect
+{
+	int		x;
+	int		y;
+}				t_ivect;
+
 typedef struct	s_data
 {
+	double	xcam;
 	t_vect	pos;
 	t_vect	dir;
 	t_vect	plane;
 	t_vect	raydir;
-	double	xcam;
+	t_vect	sidedist;
+	t_vect	deltadist;
+	t_vect	step;
+	t_ivect	map;
+	int		side;
+	double	perpwalldist;
+	int		pixeltop;
+	int		pixelbot;
 }				t_data;
 
 typedef struct	s_time

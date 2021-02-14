@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 20:02:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/11 21:15:04 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/14 02:43:27 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 
 # define MAP_WIDTH	24
 # define MAP_HEIGHT	24
+
+/*
+**		raycaster.c
+*/
+int		raycaster(t_vars *vars, t_data *data);
+
+/*
+**		raycaster2.c
+*/
+void	vertical_line(t_img *img, int x, int drawStart, int drawEnd, int color);
+void	get_stripe(t_data *data);
 
 /*
 **		cam_move.c
