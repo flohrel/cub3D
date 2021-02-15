@@ -6,12 +6,11 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/14 02:51:29 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/14 18:49:35 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
-
 
 void	init_vect(t_data *data)
 {
@@ -97,15 +96,7 @@ int		raycaster(t_vars *vars, t_data *data)
 		get_sidedist(data);
 		dda(data);
 		get_walldist(data);
-		//Calculate height of line to draw on screen
-		int lineHeight = (int)(WIN_HEIGHT / data->perpwalldist);
-		//calculate lowest and highest pixel to fill in current stripe
-		int drawStart = -lineHeight / 2 + WIN_HEIGHT / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		int drawEnd = lineHeight / 2 + WIN_HEIGHT / 2;
-		if (drawEnd >= WIN_HEIGHT)
-			drawEnd = WIN_HEIGHT - 1;
+		get_stripe(data);
 		int color;
 		switch(g_map[data->map.x][data->map.y])
 		{
@@ -119,7 +110,7 @@ int		raycaster(t_vars *vars, t_data *data)
 		if (data->side == 1)
 			color = color / 2;
 		//draw the pixels of the stripe as a vertical line
-		vertical_line(vars->img, x, drawStart, drawEnd, color);
+		vertical_line(vars->img, x, data->pixeltop, data->pixelbot, color);
 	}
 	return (0);
 }

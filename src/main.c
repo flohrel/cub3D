@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/13 19:15:46 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/15 19:39:32 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		exit_program(t_vars *vars)
 {
+	ft_lstclear(vars->textures, destroy_textures);
 	if (vars->img)
 		mlx_destroy_image(vars->mlx, vars->img->image);
 	if (vars->win)
@@ -24,19 +25,7 @@ int		exit_program(t_vars *vars)
 	return (0);
 }
 
-int		init_image(t_vars *vars, t_img *img)
-{
-	img->image = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
-	if (!img->image)
-		return (-1);
-	img->addr = mlx_get_data_addr(img->image, &img->bits_per_pixel,
-			&img->line_length, &img->endian);
-	if (!img->addr)
-		return (-1);
-	return (0);
-}
-
-int		init_window(t_vars *vars)
+int		new_window(t_vars *vars)
 {
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
@@ -104,8 +93,8 @@ int		main(void)
 	vars.data = &data;
 	vars.time = &time;
 	vars.kbflags = 0;
-	if (init_window(&vars) == -1 ||
-		init_image(&vars, &img) == -1)
+	if (new_window(&vars) == -1 ||
+		new_screen(&vars, &img, WIN_WIDTH, WIN_HEIGHT) == -1)
 		return (exit_program(&vars));
 	init_data(vars.data, vars.time);
 	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
