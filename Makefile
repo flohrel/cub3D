@@ -34,7 +34,7 @@ ifeq ($(UNAME),Linux)
 endif
 ifeq ($(UNAME),Darwin)
 	INCFLAGS += -Imlx
-	LFLAGS += -framework OpenGL -framework AppKit
+	LFLAGS += -lmlx -framework OpenGL -framework AppKit
 endif
 
 

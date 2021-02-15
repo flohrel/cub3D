@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/12 06:37:09 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/15 14:37:00 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <time.h>
 # include <stdbool.h>
+# include <stdio.h>
 # include "mlx.h"
 # include "libft.h"
 # include "color.h"
@@ -27,7 +28,14 @@
 # include "hook.h"
 # include "flag.h"
 
-int		raycaster(t_vars *vars, t_data *data);
+# ifdef __linux__
+#  define EXIT_EVENT	33
+#  define EXIT_WIN_MASK	(1L << 5)
+# elif __APPLE__
+#  define EXIT_EVENT	17
+#  define EXIT_WIN_MASK	(1L << 17)
+# endif
+
 int		exit_program(t_vars *vars);
 
 #endif
