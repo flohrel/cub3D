@@ -6,11 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/02/15 19:39:32 by flohrel          ###   ########.fr       */
-=======
-/*   Updated: 2021/02/15 14:23:58 by flohrel          ###   ########.fr       */
->>>>>>> 48f14292d7c77d84f2ed27dba59487fe9ab06295
+/*   Updated: 2021/02/15 20:02:35 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +19,8 @@ int		exit_program(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->img->image);
 	if (vars->win)
 		mlx_destroy_window(vars->mlx, vars->win);
+	if (LINUX)
+		mlx_destroy_display(vars->mlx);
 	free(vars->mlx);
 	exit(0);
 	return (0);
@@ -42,7 +40,7 @@ int		new_window(t_vars *vars)
 	return (0);
 }
 
-void	init_data(t_data *data, t_time *time)
+void	init_data(t_vars *vars, t_data *data, t_time *time)
 {
 	data->pos.x = 22;
 	data->pos.y = 12;
@@ -52,6 +50,8 @@ void	init_data(t_data *data, t_time *time)
 	data->plane.y = 0.66;
 	time->time = 0;
 	time->old_time = 0;
+	vars->kbflags = 0;
+	vars->textures = NULL;
 }
 
 void	get_input(t_vars *vars, t_time *time, int kbflags)
@@ -95,11 +95,10 @@ int		main(void)
 	vars.img = &img;
 	vars.data = &data;
 	vars.time = &time;
-	vars.kbflags = 0;
 	if (new_window(&vars) == -1 ||
 		new_screen(&vars, &img, WIN_WIDTH, WIN_HEIGHT) == -1)
 		return (exit_program(&vars));
-	init_data(vars.data, vars.time);
+	init_data(&vars, vars.data, vars.time);
 	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
 	mlx_hook(vars.win, 3, (1L << 1), key_release, &(vars.kbflags));
 	mlx_hook(vars.win, EXIT_EVENT, EXIT_WIN_MASK, exit_program, &vars);
