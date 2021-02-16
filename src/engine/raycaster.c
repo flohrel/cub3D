@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/14 18:49:35 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/16 17:15:05 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,20 +97,8 @@ int		raycaster(t_vars *vars, t_data *data)
 		dda(data);
 		get_walldist(data);
 		get_stripe(data);
-		int color;
-		switch(g_map[data->map.x][data->map.y])
-		{
-			case 1:  color = RED;  break;
-			case 2:  color = GREEN;  break;
-			case 3:  color = BLUE;   break;
-			case 4:  color = WHITE;  break;
-			default: color = YELLOW; break;
-		}
-		//give x and y sides different brightness
-		if (data->side == 1)
-			color = color / 2;
-		//draw the pixels of the stripe as a vertical line
-		vertical_line(vars->img, x, data->pixeltop, data->pixelbot, color);
+		get_texture_coor(data);
+		texture_map(vars->img, x, data->pixeltop, data->pixelbot, color);
 	}
 	return (0);
 }

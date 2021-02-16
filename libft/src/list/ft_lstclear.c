@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 06:12:39 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 13:09:13 by flohrel          ###   ########.fr       */
+/*   Created: 2020/12/11 18:51:19 by flohrel           #+#    #+#             */
+/*   Updated: 2021/02/15 19:55:18 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
+#include "libft/list.h"
 
-# include "data.h"
-# include "utils/keycode.h"
-# include "utils/flag.h"
-# include "cub3d.h"
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*lptr;
+	t_list	*next;
 
-/*
-**		keyboard.c
-*/
-int		key_release(int keycode, int *bitfield);
-int		key_press(int keycode, int *bitfield);
-
-#endif
+	if (lst && *lst && del)
+	{
+		lptr = *lst;
+		while (lptr)
+		{
+			next = lptr->next;
+			ft_lstdelone(lptr, del);
+			lptr = next;
+		}
+		*lst = NULL;
+	}
+}

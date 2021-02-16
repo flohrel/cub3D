@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   type.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 06:12:39 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 13:09:13 by flohrel          ###   ########.fr       */
+/*   Created: 2021/01/16 14:56:49 by flohrel           #+#    #+#             */
+/*   Updated: 2021/01/16 14:59:54 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
+#ifndef TYPE_H
+# define TYPE_H
 
-# include "data.h"
-# include "utils/keycode.h"
-# include "utils/flag.h"
-# include "cub3d.h"
+# include <stdint.h>
+# include <stddef.h>
+# include <limits.h>
 
-/*
-**		keyboard.c
-*/
-int		key_release(int keycode, int *bitfield);
-int		key_press(int keycode, int *bitfield);
+# define TRUE		1
+# define FALSE		0
+
+typedef char	t_bool;
 
 #endif

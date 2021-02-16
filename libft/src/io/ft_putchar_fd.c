@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 06:12:39 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 13:09:13 by flohrel          ###   ########.fr       */
+/*   Created: 2020/12/10 15:37:30 by flohrel           #+#    #+#             */
+/*   Updated: 2021/01/16 15:55:59 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
+#include "libft/io.h"
 
-# include "data.h"
-# include "utils/keycode.h"
-# include "utils/flag.h"
-# include "cub3d.h"
-
-/*
-**		keyboard.c
-*/
-int		key_release(int keycode, int *bitfield);
-int		key_press(int keycode, int *bitfield);
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

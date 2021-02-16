@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 06:12:39 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 13:09:13 by flohrel          ###   ########.fr       */
+/*   Created: 2020/11/05 19:52:03 by flohrel           #+#    #+#             */
+/*   Updated: 2021/01/16 15:56:30 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
+#include "libft/string.h"
 
-# include "data.h"
-# include "utils/keycode.h"
-# include "utils/flag.h"
-# include "cub3d.h"
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
+{
+	unsigned char	*d;
+	unsigned char	*s;
+	unsigned char	ch;
 
-/*
-**		keyboard.c
-*/
-int		key_release(int keycode, int *bitfield);
-int		key_press(int keycode, int *bitfield);
-
-#endif
+	if (!dest || !src)
+		return (NULL);
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	ch = (unsigned char)c;
+	while (n--)
+		if ((*d++ = *s++) == ch)
+			return (d);
+	return (NULL);
+}

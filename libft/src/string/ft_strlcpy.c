@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 06:12:39 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 13:09:13 by flohrel          ###   ########.fr       */
+/*   Created: 2020/11/06 02:12:43 by flohrel           #+#    #+#             */
+/*   Updated: 2021/01/16 15:58:30 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
+#include "libft/string.h"
 
-# include "data.h"
-# include "utils/keycode.h"
-# include "utils/flag.h"
-# include "cub3d.h"
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	const char	*s;
+	int			n;
 
-/*
-**		keyboard.c
-*/
-int		key_release(int keycode, int *bitfield);
-int		key_press(int keycode, int *bitfield);
-
-#endif
+	if (!dst || !src)
+		return (0);
+	n = size;
+	s = src;
+	if (n != 0)
+	{
+		while (--n)
+			if ((*dst++ = *s++) == '\0')
+				break ;
+	}
+	if (!n)
+	{
+		if (size != 0)
+			*dst = '\0';
+		while (*s++)
+			;
+	}
+	return (s - src - 1);
+}

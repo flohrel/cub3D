@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   conv.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 06:12:39 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 13:09:13 by flohrel          ###   ########.fr       */
+/*   Created: 2021/01/16 15:32:40 by flohrel           #+#    #+#             */
+/*   Updated: 2021/02/08 18:47:58 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
+#ifndef CONV_H
+# define CONV_H
 
-# include "data.h"
-# include "utils/keycode.h"
-# include "utils/flag.h"
-# include "cub3d.h"
+# include "type.h"
+# include "ctype.h"
+# include "memory.h"
 
-/*
-**		keyboard.c
-*/
-int		key_release(int keycode, int *bitfield);
-int		key_press(int keycode, int *bitfield);
+int			ft_atoi(const char *nptr);
+char		*ft_itoa(int n);
+char		*ft_ltoa(long n);
+char		*ft_lltoa(long long n);
+char		*ft_ltoa_base(long n, char *base);
+char		*ft_lltoa_base(long long n, char *base);
+char		*ft_ultoa_base(unsigned long n, char *base);
 
 #endif

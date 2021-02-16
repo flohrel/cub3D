@@ -4,7 +4,7 @@
 
 NAME		=	cub3D
 
-VPATH		=	src src/hook src/engine
+VPATH		=	src src/hook src/engine src/utils src/platform
 OBJDIR		=	obj
 LIBDIR		=	lib
 INCLDIR		=	incld
@@ -17,7 +17,7 @@ SRC			=	main.c \
 				map.c \
 				flag.c \
 				keyboard.c \
-				img_utils.c
+				image.c
 LIB			=	libft.a
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)
 
@@ -25,16 +25,21 @@ CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
 INCFLAGS	=	-I$(INCLDIR)
 LFLAGS		=	-L$(LIBDIR)/libft -lft
+CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address -g3
+INCFLAGS	=	-I./$(INCLDIR)
+LFLAGS		=	-L./$(LIBDIR) -lft
 RM			=	/bin/rm -rf
 UNAME		:=	$(shell uname -s)
 
 ifeq ($(UNAME),Linux)
-	INCFLAGS += -I/usr/include -Imlx-linux -O3
+	INCFLAGS += -I/usr/include -I$(LIBDIR)/mlx-linux -O3
 	LFLAGS += -L$(LIBDIR)/mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+	SRC += linux.c
 endif
 ifeq ($(UNAME),Darwin)
 	INCFLAGS += -I$(LIBDIR)/mlx
 	LFLAGS += -l$(LIBDIR)/mlx -framework OpenGL -framework AppKit
+	SRC += mac.c
 endif
 
 
