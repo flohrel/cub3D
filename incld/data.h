@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 16:24:00 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/16 17:09:49 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ typedef struct	s_data
 	double	perpwalldist;
 	int		pixeltop;
 	int		pixelbot;
+	double	xwall;
+	int		tex_id;
+	t_vect	tex;
 }				t_data;
 
 typedef struct	s_time

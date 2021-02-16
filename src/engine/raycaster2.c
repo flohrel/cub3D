@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 02:30:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 15:39:25 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/16 17:15:18 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	vertical_line(t_img *img, int x, int start, int end, int color)
 	y = start;
 	while (y < end)
 	{
-		my_mlx_pixel_put(img, x, y, color);
 		y++;
 	}
 }
@@ -37,6 +36,25 @@ void	get_stripe(t_data *data)
 		data->pixelbot = WIN_HEIGHT - 1;
 }
 
+void	get_texture_coor(t_data *data)
+{
+	data->tex_id = g_map[data->map.x][data->map.y] - 1;
+	if (data->side == 0)
+		data->xwall = data->pos.y + data->perpwalldist * data->raydir.y;
+	else
+		data->xwall = data->pos.x + data->perpwalldist * data->raydir.x;
+	data->xwall -= floor((data-xwall));
+	data->tex.x = (int)(data->xwall * (double)TEX_WIDTH);
+	if (((data->side == 0) && (data->raydir.x > 0)) ||
+		((data->side == 1) && (data->raydir.x < 0)))
+		data->tex.x = TEX_WIDTH - data->tex.x - 1;
+}
+
+void	texture_map(t_data *data)
+{
+	my_mlx_pixel_put(img, x, y, color);
+}
+
 void	get_fps(t_vars *vars, t_time *time)
 {
 	char	*fps;
@@ -45,7 +63,7 @@ void	get_fps(t_vars *vars, t_time *time)
 	time->time = clock();
 	time->frame_time = (time->time - time->old_time) / CLOCKS_PER_SEC;
 	fps = ft_itoa(1 / time->frame_time);
-	mlx_string_put(vars->mlx, vars->win, 15, 15, 0xFFFFFFFF, fps);
+	mlx_string_put(vars->mlx, vars->win, 15, 15, WHITE, fps);
 	time->move_speed = time->frame_time * 10.0;
 	time->rot_speed = time->frame_time * 5.0;
 	free(fps);

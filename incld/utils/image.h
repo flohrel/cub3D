@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:08:58 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 15:45:52 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/16 17:09:34 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define MLX_TEX3	"rsrc/textures/wall3.xpm"
 # define MLX_TEX4	"rsrc/textures/wall4.xpm"
 # define MLX_TEX5	"rsrc/textures/open.xpm"
+# define MLX_TEX6	"rsrc/textures/open30.xpm"
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		xpm_to_img(t_vars *vars, t_list **textures, char *filename);

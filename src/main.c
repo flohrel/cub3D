@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 16:21:40 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/16 16:48:50 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int		main(void)
 		init_data(&vars, vars.data, vars.time) == -1 ||
 		load_textures(&vars) == -1)
 		return (exit_program(&vars));
-	printf("ici");
 	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
 	mlx_hook(vars.win, 3, (1L << 1), key_release, &(vars.kbflags));
 	mlx_hook(vars.win, EXIT_EVENT, EXIT_WIN_MASK, exit_program, &vars);
