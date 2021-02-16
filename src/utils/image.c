@@ -6,11 +6,11 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 13:04:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/15 19:42:35 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/16 16:32:09 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "img_utils.h"
+# include "utils/image.h"
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -29,7 +29,7 @@ int		xpm_to_img(t_vars *vars, t_list **textures, char *filename)
 
 	width = TEX_WIDTH;
 	height = TEX_HEIGHT;
-	img = malloc(sizeof(img));
+	img = ft_calloc(1, sizeof(t_img));
 	img->image = mlx_xpm_file_to_image(vars->mlx, filename, &width, &height);
 	if (!img->image)
 		return (-1);
@@ -45,18 +45,16 @@ int		xpm_to_img(t_vars *vars, t_list **textures, char *filename)
 	return (0);
 }
 
-void	get_fps(t_vars *vars, t_time *time)
+int		load_textures(t_vars *vars)
 {
-	char	*fps;
-
-	time->old_time = time->time;
-	time->time = clock();
-	time->frame_time = (time->time - time->old_time) / CLOCKS_PER_SEC;
-	fps = ft_itoa(1 / time->frame_time);
-	mlx_string_put(vars->mlx, vars->win, 15, 15, 0xFFFFFFFF, fps);
-	time->move_speed = time->frame_time * 10.0;
-	time->rot_speed = time->frame_time * 5.0;
-	free(fps);
+	if (xpm_to_img(vars, &vars->textures, MLX_TEX0) == -1 ||
+		xpm_to_img(vars, &vars->textures, MLX_TEX1) == -1 ||
+		xpm_to_img(vars, &vars->textures, MLX_TEX2) == -1 ||
+		xpm_to_img(vars, &vars->textures, MLX_TEX3) == -1 ||
+		xpm_to_img(vars, &vars->textures, MLX_TEX4) == -1 ||
+		xpm_to_img(vars, &vars->textures, MLX_TEX5) == -1)
+		return (ERROR);
+	return (SUCCESS);
 }
 
 void	destroy_textures(void *texture)

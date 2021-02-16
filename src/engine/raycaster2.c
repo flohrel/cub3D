@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 02:30:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/14 03:05:45 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/16 15:39:25 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,18 @@ void	get_stripe(t_data *data)
 	data->pixelbot = stripelen / 2 + WIN_HEIGHT / 2;
 	if (data->pixelbot >= WIN_HEIGHT)
 		data->pixelbot = WIN_HEIGHT - 1;
+}
+
+void	get_fps(t_vars *vars, t_time *time)
+{
+	char	*fps;
+
+	time->old_time = time->time;
+	time->time = clock();
+	time->frame_time = (time->time - time->old_time) / CLOCKS_PER_SEC;
+	fps = ft_itoa(1 / time->frame_time);
+	mlx_string_put(vars->mlx, vars->win, 15, 15, 0xFFFFFFFF, fps);
+	time->move_speed = time->frame_time * 10.0;
+	time->rot_speed = time->frame_time * 5.0;
+	free(fps);
 }

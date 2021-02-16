@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 06:12:39 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 13:09:13 by flohrel          ###   ########.fr       */
+/*   Created: 2021/02/16 12:38:45 by flohrel           #+#    #+#             */
+/*   Updated: 2021/02/16 16:19:16 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
+# include "platform/mac.h"
 
-# include "data.h"
-# include "utils/keycode.h"
-# include "utils/flag.h"
-# include "cub3d.h"
-
-/*
-**		keyboard.c
-*/
-int		key_release(int keycode, int *bitfield);
-int		key_press(int keycode, int *bitfield);
-
-#endif
+int		exit_program(t_vars *vars)
+{
+	ft_lstclear(&vars->textures, destroy_textures);
+	if (vars->img)
+		mlx_destroy_image(vars->mlx, vars->img->image);
+	if (vars->win)
+		mlx_destroy_window(vars->mlx, vars->win);
+	free(vars->mlx);
+	exit(0);
+	return (0);
+}

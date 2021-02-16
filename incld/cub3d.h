@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/15 19:59:37 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/16 15:48:16 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,32 @@
 # include <time.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <math.h>
 # include "mlx.h"
 # include "libft.h"
-# include "color.h"
-# include "math.h"
-# include "data_type.h"
-# include "img_utils.h"
+# include "data.h"
+
+/*
+**		engine
+*/
 # include "engine.h"
-# include "keycode.h"
 # include "hook.h"
-# include "flag.h"
+
+/*
+**		utils
+*/
+# include "utils/flag.h"
+# include "utils/keycode.h"
+# include "utils/color.h"
+# include "utils/image.h"
 
 # ifdef __linux__
-#  define EXIT_EVENT	33
-#  define EXIT_WIN_MASK	(1L << 5)
-#  define LINUX			1
+#  include "platform/linux.h"
 # elif __APPLE__
-#  define EXIT_EVENT	17
-#  define EXIT_WIN_MASK	(1L << 17)
-#  define LINUX			0
+#  include "platform/mac.h"
 # endif
 
-int		exit_program(t_vars *vars);
+# define ERROR		-1
+# define SUCCESS	0
 
 #endif
