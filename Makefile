@@ -6,7 +6,7 @@ NAME		=	cub3D
 
 VPATH		=	src src/hook src/engine
 OBJDIR		=	obj
-LIBDIR		=	libft
+LIBDIR		=	lib
 INCLDIR		=	incld
 
 SRC			=	main.c \
@@ -23,18 +23,18 @@ OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)
 
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
-INCFLAGS	=	-I./$(INCLDIR)
-LFLAGS		=	-L./$(LIBDIR) -lft
+INCFLAGS	=	-I$(INCLDIR)
+LFLAGS		=	-L$(LIBDIR)/libft -lft
 RM			=	/bin/rm -rf
 UNAME		:=	$(shell uname -s)
 
 ifeq ($(UNAME),Linux)
 	INCFLAGS += -I/usr/include -Imlx-linux -O3
-	LFLAGS += -Lmlx_Linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+	LFLAGS += -L$(LIBDIR)/mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 endif
 ifeq ($(UNAME),Darwin)
-	INCFLAGS += -Imlx
-	LFLAGS += -lmlx -framework OpenGL -framework AppKit
+	INCFLAGS += -I$(LIBDIR)/mlx
+	LFLAGS += -l$(LIBDIR)/mlx -framework OpenGL -framework AppKit
 endif
 
 
@@ -50,7 +50,7 @@ $(OBJDIR)/%.o:	%.c | $(OBJDIR)
 				$(CC) $(CFLAGS) $(INCFLAGS) -c $< -o $@
 
 $(NAME):		$(OBJ)
-				make -C $(LIBDIR)
+				make -C $(LIBDIR)/libft
 				$(CC) $(CFLAGS) -o $@ $^ $(LFLAGS)
 
 $(OBJDIR):
