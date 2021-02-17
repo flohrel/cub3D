@@ -6,55 +6,61 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 02:30:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 17:15:18 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/17 16:06:14 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 
-void	vertical_line(t_img *img, int x, int start, int end, int color)
-{
-	int	y;
-
-	y = start;
-	while (y < end)
-	{
-		y++;
-	}
-}
-
 void	get_stripe(t_data *data)
 {
-	int stripelen;
-	
-	stripelen = (int)(WIN_HEIGHT / data->perpwalldist);
-	data->pixeltop = -stripelen / 2 + WIN_HEIGHT / 2;
+	data->stripe_len = (int)(WIN_HEIGHT / data->perpwalldist);
+	data->pixeltop = -data->stripe_len / 2 + WIN_HEIGHT / 2;
 	if (data->pixeltop < 0)
 		data->pixeltop = 0;
-	data->pixelbot = stripelen / 2 + WIN_HEIGHT / 2;
+	data->pixelbot = data->stripe_len / 2 + WIN_HEIGHT / 2;
 	if (data->pixelbot >= WIN_HEIGHT)
 		data->pixelbot = WIN_HEIGHT - 1;
 }
 
-void	get_texture_coor(t_data *data)
+/*void	get_texture_coor(t_data *data)
 {
 	data->tex_id = g_map[data->map.x][data->map.y] - 1;
 	if (data->side == 0)
 		data->xwall = data->pos.y + data->perpwalldist * data->raydir.y;
 	else
 		data->xwall = data->pos.x + data->perpwalldist * data->raydir.x;
-	data->xwall -= floor((data-xwall));
+	data->xwall -= floor((data->xwall));
 	data->tex.x = (int)(data->xwall * (double)TEX_WIDTH);
 	if (((data->side == 0) && (data->raydir.x > 0)) ||
 		((data->side == 1) && (data->raydir.x < 0)))
 		data->tex.x = TEX_WIDTH - data->tex.x - 1;
 }
 
-void	texture_map(t_data *data)
+void	texture_map(t_vars *vars, t_data *data, int x)
 {
-	my_mlx_pixel_put(img, x, y, color);
-}
+	double		step;
+	double		texpos;
+	uint32_t	color;
+	t_img		*texture;
+	int			y;
 
+	step = 1.0 * TEX_HEIGHT / data->stripe_len;
+	texpos = (data->pixeltop - WIN_HEIGHT / 2 + data->stripe_len / 2) * step;
+	y = data->pixeltop;
+	while (y < data->pixelbot)
+	{
+		data->tex.y = (int)texpos & (TEX_HEIGHT - 1);
+		texpos += step;
+		texture = (vars->textures + data->tex_id)->content;
+		color = (uint32_t)(texture->image + TEX_HEIGHT * data->tex.y + data->tex.x);
+		if (data->side == 1)
+			color = (color >> 1) & 8355711;
+		my_mlx_pixel_put(vars->img, x, y, color);
+		y++;
+	}
+}
+*/
 void	get_fps(t_vars *vars, t_time *time)
 {
 	char	*fps;

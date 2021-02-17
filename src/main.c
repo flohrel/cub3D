@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 16:48:50 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/17 17:04:41 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int		init_data(t_vars *vars, t_data *data, t_time *time)
 	time->time = 0;
 	time->old_time = 0;
 	vars->kbflags = 0;
-	vars->textures = NULL;
 	return (SUCCESS);
 }
 
@@ -61,36 +60,40 @@ void	get_input(t_vars *vars, t_time *time, int kbflags)
 
 int		render_next_frame(t_vars *vars)
 {
-	t_img	*img;
+	t_img	*screen;
 
-	img = vars->img;
-	ft_bzero(img->addr, img->line_length * WIN_HEIGHT);
+	screen = vars->screen;
+	ft_bzero(screen->addr, screen->line_length * WIN_HEIGHT);
 	raycaster(vars, vars->data);
 	get_input(vars, vars->time, vars->kbflags);
-	mlx_put_image_to_window(vars->mlx, vars->win, img->image, 0, 0);
+	mlx_put_image_to_window(vars->mlx, vars->win, screen->image, 0, 0);
 	get_fps(vars, vars->time);
 	return (0);
 }
 
-int		main(void)
+int		main(int ac, char **av)
 {
 	t_vars	vars;
-	t_img	img;
+	t_img	screen;
 	t_data	data;
 	t_time	time;
+	t_param	param;
 
-	vars.img = &img;
+	vars.screen = &screen;
 	vars.data = &data;
 	vars.time = &time;
-	if (new_window(&vars) == -1 ||
-		new_screen(&vars, &img, WIN_WIDTH, WIN_HEIGHT) == -1 ||
+	vars.param = &param;
+	param.flags = 0xFFFFFF;
+	if (parser(&param, ac, av) == -1)
+/*		new_window(&vars) == -1 ||
+		new_screen(&vars, &screen, WIN_WIDTH, WIN_HEIGHT) == -1 ||
 		init_data(&vars, vars.data, vars.time) == -1 ||
-		load_textures(&vars) == -1)
+		load_textures(&vars) == -1)*/
 		return (exit_program(&vars));
-	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
+/*	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
 	mlx_hook(vars.win, 3, (1L << 1), key_release, &(vars.kbflags));
 	mlx_hook(vars.win, EXIT_EVENT, EXIT_WIN_MASK, exit_program, &vars);
 	mlx_loop_hook(vars.mlx, render_next_frame, &vars);
-	mlx_loop(vars.mlx);
+	mlx_loop(vars.mlx);*/
 	return (0);
 }

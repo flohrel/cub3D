@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 13:04:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 16:32:09 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/17 16:07:08 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int		xpm_to_img(t_vars *vars, t_list **textures, char *filename)
+/*int		xpm_to_img(t_vars *vars, t_list **textures, char *filename)
 {
 	t_img	*img;
 	t_list	*lst;
@@ -56,7 +56,7 @@ int		load_textures(t_vars *vars)
 		return (ERROR);
 	return (SUCCESS);
 }
-
+*/
 void	destroy_textures(void *texture)
 {
 	t_img	*img;

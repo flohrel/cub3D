@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 17:09:49 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/17 16:58:29 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ typedef struct	s_data
 	double	perpwalldist;
 	int		pixeltop;
 	int		pixelbot;
+	int		stripe_len;
 	double	xwall;
 	int		tex_id;
-	t_vect	tex;
+	t_ivect	tex;
 }				t_data;
 
 typedef struct	s_time
@@ -77,14 +78,26 @@ typedef struct	s_time
 	double	rot_speed;
 }				t_time;
 
+typedef struct	s_param
+{
+	unsigned int	win_height;
+	unsigned int	win_width;
+	uint32_t		floor_color;
+	uint32_t		ceil_color;
+	char			**texture_path;
+	int				flags;
+}				t_param;
+
 typedef struct	s_vars
 {
+	t_param	*param;
 	void	*mlx;
 	void	*win;
-	t_img	*img;
+	t_img	*screen;
 	t_data	*data;
 	t_time	*time;
-	t_list	*textures;
+	t_img	*textures[5];
+	char	**map;
 	int		kbflags;
 }				t_vars;
 

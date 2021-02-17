@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 20:02:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 17:08:57 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/17 13:49:09 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <math.h>
 # include <stdbool.h>
+# include <stdint.h>
 # include "data.h"
 # include "utils/color.h"
 # include "utils/image.h"
@@ -30,8 +31,9 @@ int		raycaster(t_vars *vars, t_data *data);
 /*
 **		raycaster2.c
 */
-void	vertical_line(t_img *img, int x, int drawStart, int drawEnd, int color);
 void	get_stripe(t_data *data);
+void	get_texture_coor(t_data *data);
+void	texture_map(t_vars *vars, t_data *data, int x);
 void	get_fps(t_vars *vars, t_time *time);
 
 /*

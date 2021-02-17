@@ -6,7 +6,7 @@
 #    By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 16:04:42 by flohrel           #+#    #+#              #
-#    Updated: 2021/02/15 19:57:18 by flohrel          ###   ########.fr        #
+#    Updated: 2021/02/17 13:58:14 by flohrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ VPATH		=	src/conv \
 				src/memory \
 				src/string \
 				src/io/gnl
-INCLDIR		=	../incld
+INCLDIR		=	incld
 OBJDIR		=	obj
 
 CONV		=	ft_atoi.c \

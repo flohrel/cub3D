@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 17:15:05 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/17 16:06:13 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int		raycaster(t_vars *vars, t_data *data)
 {
 	int		x;
 
+	(void)vars;
 	x = -1;
 	while (++x < WIN_WIDTH)
 	{
@@ -97,8 +98,8 @@ int		raycaster(t_vars *vars, t_data *data)
 		dda(data);
 		get_walldist(data);
 		get_stripe(data);
-		get_texture_coor(data);
-		texture_map(vars->img, x, data->pixeltop, data->pixelbot, color);
+//		get_texture_coor(data);
+//		texture_map(vars, vars->data, x);
 	}
 	return (0);
 }

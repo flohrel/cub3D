@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/16 15:48:16 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/17 16:04:08 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,26 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <math.h>
+# include <errno.h>
+# include <string.h>
+# include <fcntl.h>
+
+/*
+**		platform dependant
+*/
+# ifdef __linux__
+#  include "platform/linux.h"
+# elif __APPLE__
+#  include "platform/mac.h"
+# endif
+
+/*
+**		general
+*/
 # include "mlx.h"
 # include "libft.h"
 # include "data.h"
+# include "parse.h"
 
 /*
 **		engine
@@ -35,12 +52,6 @@
 # include "utils/keycode.h"
 # include "utils/color.h"
 # include "utils/image.h"
-
-# ifdef __linux__
-#  include "platform/linux.h"
-# elif __APPLE__
-#  include "platform/mac.h"
-# endif
 
 # define ERROR		-1
 # define SUCCESS	0
