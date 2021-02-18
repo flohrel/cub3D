@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:03:20 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/17 15:58:21 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 15:34:14 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "cub3d.h"
 
-int		parse_param(int ac, char **av);
+int		parser(t_vars *vars, int ac, char **av);
 
 #endif

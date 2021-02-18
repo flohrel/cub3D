@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:38:45 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/17 16:33:26 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 17:18:11 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 
 int		exit_program(t_vars *vars)
 {
+	int		i;
+	t_param	*param;
+
+	i = -1;
+	param = vars->param;
+	while (++i < 5)
+	{
+		if (param->texture_path[i])
+			free(param->texture_path[i]);
+		if (vars->textures[i])
+			mlx_destroy_img(vars->mlx, vars->textures[i]->image);
+	}
 	if (vars->screen->image)
 		mlx_destroy_image(vars->mlx, vars->screen->image);
 	if (vars->win)

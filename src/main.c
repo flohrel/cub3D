@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/17 17:04:41 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 16:59:06 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		new_window(t_vars *vars)
 	return (0);
 }
 
-int		init_data(t_vars *vars, t_data *data, t_time *time)
+void	init_data(t_vars *vars, t_data *data, t_time *time)
 {
 	data->pos.x = 22;
 	data->pos.y = 12;
@@ -37,7 +37,6 @@ int		init_data(t_vars *vars, t_data *data, t_time *time)
 	time->time = 0;
 	time->old_time = 0;
 	vars->kbflags = 0;
-	return (SUCCESS);
 }
 
 void	get_input(t_vars *vars, t_time *time, int kbflags)
@@ -52,9 +51,9 @@ void	get_input(t_vars *vars, t_time *time, int kbflags)
 		move_backward(vars, time);
 	if (check_flag(kbflags, FW))
 		move_forward(vars, time);
-	if (check_flag(kbflags, R))
+	if (check_flag(kbflags, RT))
 		strafe_right(vars, time);
-	if (check_flag(kbflags, L))
+	if (check_flag(kbflags, LT))
 		strafe_left(vars, time);
 }
 
@@ -63,12 +62,18 @@ int		render_next_frame(t_vars *vars)
 	t_img	*screen;
 
 	screen = vars->screen;
-	ft_bzero(screen->addr, screen->line_length * WIN_HEIGHT);
+	ft_bzero(screen->addr, screen->line_length * vars->param->win_height);
 	raycaster(vars, vars->data);
 	get_input(vars, vars->time, vars->kbflags);
 	mlx_put_image_to_window(vars->mlx, vars->win, screen->image, 0, 0);
 	get_fps(vars, vars->time);
 	return (0);
+}
+
+void	init_vars(t_param *param)
+{
+	errno = 0;
+	param->save = false;
 }
 
 int		main(int ac, char **av)
@@ -83,14 +88,13 @@ int		main(int ac, char **av)
 	vars.data = &data;
 	vars.time = &time;
 	vars.param = &param;
-	param.flags = 0xFFFFFF;
-	if (parser(&param, ac, av) == -1)
+	init_vars(&param);
+	if (parser(&vars, ac, av) == -1)
 /*		new_window(&vars) == -1 ||
-		new_screen(&vars, &screen, WIN_WIDTH, WIN_HEIGHT) == -1 ||
-		init_data(&vars, vars.data, vars.time) == -1 ||
-		load_textures(&vars) == -1)*/
+		new_screen(&vars, &screen, param.win_width, param.win_height) == -1 ||*/
 		return (exit_program(&vars));
-/*	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
+/*	init_data(&vars, vars.data, vars.time);
+	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
 	mlx_hook(vars.win, 3, (1L << 1), key_release, &(vars.kbflags));
 	mlx_hook(vars.win, EXIT_EVENT, EXIT_WIN_MASK, exit_program, &vars);
 	mlx_loop_hook(vars.mlx, render_next_frame, &vars);

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 06:09:49 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/15 14:38:34 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 15:33:19 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		key_press(int keycode, int *bitfield)
 	if (keycode == BACKWARD)
 		set_flag(bitfield, BW);
 	if (keycode == LEFT)
-		set_flag(bitfield, L);
+		set_flag(bitfield, LT);
 	if (keycode == RIGHT)
-		set_flag(bitfield, R);
+		set_flag(bitfield, RT);
 	return (0);
 }
 
@@ -42,8 +42,8 @@ int		key_release(int keycode, int *bitfield)
 	if (keycode == BACKWARD)
 		clear_flag(bitfield, BW);
 	if (keycode == LEFT)
-		clear_flag(bitfield, L);
+		clear_flag(bitfield, LT);
 	if (keycode == RIGHT)
-		clear_flag(bitfield, R);
+		clear_flag(bitfield, RT);
 	return (0);
 }

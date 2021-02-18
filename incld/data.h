@@ -6,29 +6,20 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/17 16:58:29 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 17:21:06 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_TYPE_H
 # define DATA_TYPE_H
 
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT	600
-# endif
-
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH		800
-# endif
-
 # define TEX_WIDTH	64
 # define TEX_HEIGHT	64
 
-# include "libft/list.h"
+# include "cub3d.h"
 
 typedef struct	s_img
 {
-	void	*mlx;
 	void	*image;
 	char	*addr;
 	int		bits_per_pixel;
@@ -84,8 +75,9 @@ typedef struct	s_param
 	unsigned int	win_width;
 	uint32_t		floor_color;
 	uint32_t		ceil_color;
-	char			**texture_path;
-	int				flags;
+	char			*texture_path[5];
+	char			flags;
+	bool			save;
 }				t_param;
 
 typedef struct	s_vars

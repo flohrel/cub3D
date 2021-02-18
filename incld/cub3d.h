@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/17 16:04:08 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 17:23:28 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <time.h>
-# include <stdbool.h>
 # include <stdio.h>
 # include <math.h>
 # include <errno.h>

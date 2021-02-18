@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:02:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/18 14:53:35 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 17:14:41 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,24 @@ void	free_sstr(char **sstr)
 	free(s);
 }
 
+int		parse_rgb(uint32_t *color, char *rgb_str)
+{
+	char **rgb;
+
+	*color = 0xFF000000;
+	rgb = ft_split(rgb_str, ',');
+	if (!rgb[0] || !rgb[1] || !rgb[2])
+		return (-1);
+	*color |= ft_atoi(rgb[0]) << 16;
+	*color |= ft_atoi(rgb[1]) << 8;
+	*color |= ft_atoi(rgb[2]);
+	free_sstr(rgb);
+	return (0);
+}
+
 int		set_parameter(t_param *param, char **sstr)
 {
-	if (ft_strcmp(sstr[0], "R"))
+	if (!ft_strcmp(sstr[0], "R"))
 	{
 		if (!sstr[1] || !sstr[2])
 			return (-1);
@@ -42,21 +57,38 @@ int		set_parameter(t_param *param, char **sstr)
 		param->win_height = ft_atoi(sstr[2]);
 		if (param->win_width <= 0 || param->win_height <= 0)
 			return (-1);
-		clear_flag(&param->flags, R);
+		clear_flag((int *)&param->flags, R);
 	}
-	else if (ft_strcmp(sstr[0], "NO"))
-		ft_strcpy(param->texture_path)[0]
+	else if (!ft_strcmp(sstr[0], "NO") && clear_flag((int *)&param->flags, NO))
+		param->texture_path[0] = ft_strdup(sstr[1]);
+	else if (!ft_strcmp(sstr[0], "SO") && clear_flag((int *)&param->flags, SO))
+		param->texture_path[1] = ft_strdup(sstr[1]);
+	else if (!ft_strcmp(sstr[0], "WE") && clear_flag((int *)&param->flags, WE))
+		param->texture_path[2] = ft_strdup(sstr[1]);
+	else if (!ft_strcmp(sstr[0], "EA") && clear_flag((int *)&param->flags, EA))
+		param->texture_path[3] = ft_strdup(sstr[1]);
+	else if (!ft_strcmp(sstr[0], "S") && clear_flag((int *)&param->flags, S))
+		param->texture_path[4] = ft_strdup(sstr[1]);
+	else if (!ft_strcmp(sstr[0], "F") && clear_flag((int *)&param->flags, F))
+		return (parse_rgb(&param->floor_color, sstr[1]));
+	else if (!ft_strcmp(sstr[0], "C") && clear_flag((int *)&param->flags, C))
+		return (parse_rgb(&param->ceil_color, sstr[1]));
+	return (0);
 }
 
 int		parse_param(int fd, t_param *param)
 {
+	int		i;
 	int		ret;
 	char	*line;
 	char	**sstr;
 
 	ret = 1;
-	param->flags = 0xFFFFFF;
-	while (param->flags || ret > 0)
+	param->flags = 0xFF;
+	i = -1;
+	while (++i < 5)
+		param->texture_path[i] = NULL;
+	while (param->flags && ret > 0)
 	{
 		line = NULL;
 		ret = get_next_line(fd, &line);
@@ -69,26 +101,44 @@ int		parse_param(int fd, t_param *param)
 	return (ret);
 }
 
+int		load_texture(t_vars *vars, t_param *param)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 5)
+	{
+		if (xpm_to_img(vars, vars->textures[i], param->texture_path[i]) == -1)
+			return (ERROR);
+	}
+	return (SUCCESS);
+}
+
 int		parser(t_vars *vars, int ac, char **av)
 {
 	int		fd;
+	t_param	*param;
 
-	errno = 0;
+	param = vars->param;
 	if (ac < 2 || ac > 3)
 		return (error_handler("Wrong number of argument"));
-	else if (ac == 3 &&
-			(ft_strlen(av[2]) != 6 || ft_strncmp(av[2], "--save", 6)))
-		return (error_handler("Bad argument"));
+	else if (ac == 3)
+	{
+		if (!ft_strncmp(av[2], "--save", 6))
+			param->save = true;
+		else
+			return (error_handler("Bad argument"));
+	}
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (error_handler(NULL));
-	if (parse_param(fd, vars->param) == -1)
+	if (parse_param(fd, param) == -1)
 		return (ERROR);
 	if (param->flags)
 		return (error_handler("Bad .cub file - parameter missing"));
-	if (load_texture(vars, vars->param) == -1)
+	if (load_texture(vars, param) == -1)
 		return (error_handler("Bad .cub file - texture not found"));
-	if (parse_map(fd, vars->map) == -1)
-		return (error_handler("Bad .cub file - map error"));
+//	if (parse_map(fd, vars->map) == -1)
+//		return (error_handler("Bad .cub file - map error"));
 	return (0);
 }
