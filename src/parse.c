@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:02:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/17 17:05:18 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 14:53:35 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,44 +22,56 @@ int		error_handler(char *error_msg)
 	return (ERROR);
 }
 
-void	free_strstr(char ***strstr)
+void	free_sstr(char **sstr)
 {
-	while (**strstr)
-		free(**strstr);
-	free(*strstr);
+	char	**s;
+
+	s = sstr;
+	while (*sstr)
+		free(*sstr++);
+	free(s);
 }
 
-int		parse_file(int fd, t_param *param)
+int		set_parameter(t_param *param, char **sstr)
 {
-	char	**args;
-	char	*line;
-	int		ret;
-
-	line = NULL;
-	ret = 1;
-	while (ret > 0)
+	if (ft_strcmp(sstr[0], "R"))
 	{
-		ret = get_next_line(fd, &line);
-		if (ret > 0)
-		{
-			args = ft_split(line, ' ');
-			if ((args / sizeof(char *)) == 2)
-				parse_param(args);
-			else
-			{
-				if (param->flags)
-					return (error_handler("Bad map file - parameter missing"));
-				parse_map(param);
-			}
-		}
-		free_strstr(&args);
+		if (!sstr[1] || !sstr[2])
+			return (-1);
+		param->win_width = ft_atoi(sstr[1]);
+		param->win_height = ft_atoi(sstr[2]);
+		if (param->win_width <= 0 || param->win_height <= 0)
+			return (-1);
+		clear_flag(&param->flags, R);
 	}
-	free(line);
+	else if (ft_strcmp(sstr[0], "NO"))
+		ft_strcpy(param->texture_path)[0]
 }
 
-int		parser(t_param *param, int ac, char **av)
+int		parse_param(int fd, t_param *param)
 {
-	int	fd;
+	int		ret;
+	char	*line;
+	char	**sstr;
+
+	ret = 1;
+	param->flags = 0xFFFFFF;
+	while (param->flags || ret > 0)
+	{
+		line = NULL;
+		ret = get_next_line(fd, &line);
+		sstr = ft_split(line, ' ');
+		if (*sstr && set_parameter(param, sstr) == -1)
+			ret = error_handler("Bad .cub file - bad parameter");
+		free(line);
+		free(sstr);
+	}
+	return (ret);
+}
+
+int		parser(t_vars *vars, int ac, char **av)
+{
+	int		fd;
 
 	errno = 0;
 	if (ac < 2 || ac > 3)
@@ -70,7 +82,13 @@ int		parser(t_param *param, int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (error_handler(NULL));
-	if (parse_file(fd, param) == -1)
+	if (parse_param(fd, vars->param) == -1)
 		return (ERROR);
+	if (param->flags)
+		return (error_handler("Bad .cub file - parameter missing"));
+	if (load_texture(vars, vars->param) == -1)
+		return (error_handler("Bad .cub file - texture not found"));
+	if (parse_map(fd, vars->map) == -1)
+		return (error_handler("Bad .cub file - map error"));
 	return (0);
 }

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv.h                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/16 15:32:40 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/08 18:47:58 by flohrel          ###   ########.fr       */
+/*   Created: 2021/02/18 14:57:08 by flohrel           #+#    #+#             */
+/*   Updated: 2021/02/18 14:59:00 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONV_H
-# define CONV_H
+#include "libft/string.h"
 
-# include "type.h"
-# include "ctype.h"
-# include "memory.h"
+char	*ft_strcpy(char *dest, const char *src)
+{
+	int i;
 
-int			ft_atoi(const char *nptr);
-char		*ft_itoa(int n);
-char		*ft_ltoa(long n);
-char		*ft_lltoa(long long n);
-char		*ft_ltoa_base(long n, char *base);
-char		*ft_lltoa_base(long long n, char *base);
-char		*ft_ultoa_base(unsigned long n, char *base);
-
-#endif
+	i = 0;
+	while (*src)
+	{
+		dest[i++] = *src++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}

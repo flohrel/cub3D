@@ -6,13 +6,28 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 20:29:06 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/12 06:42:23 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 14:05:23 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FLAG_H
 # define FLAG_H
 
+/*
+**		parameters
+*/
+# define R			1
+# define NO			2
+# define SO			4
+# define WE			8
+# define EA			16
+# define S			32
+# define F			64
+# define C			128
+
+/*
+**		keyboard
+*/
 # define ESC		1
 # define SP			2
 # define FW			4

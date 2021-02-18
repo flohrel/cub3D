@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv.h                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/16 15:32:40 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/08 18:47:58 by flohrel          ###   ########.fr       */
+/*   Created: 2021/02/18 14:42:05 by flohrel           #+#    #+#             */
+/*   Updated: 2021/02/18 14:59:17 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONV_H
-# define CONV_H
+#include "libft/string.h"
 
-# include "type.h"
-# include "ctype.h"
-# include "memory.h"
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int i;
 
-int			ft_atoi(const char *nptr);
-char		*ft_itoa(int n);
-char		*ft_ltoa(long n);
-char		*ft_lltoa(long long n);
-char		*ft_ltoa_base(long n, char *base);
-char		*ft_lltoa_base(long long n, char *base);
-char		*ft_ultoa_base(unsigned long n, char *base);
-
-#endif
+	i = -1;
+	while (s1[++i])
+		if (s1[i] != s2[i])
+			break ;
+	return (*(unsigned char *)(s1 + i) - *(unsigned char *)(s2 + i));
+}
