@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 20:02:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/18 17:23:12 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 19:20:21 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@
 /*
 **		raycaster.c
 */
-int		raycaster(t_vars *vars, t_data *data);
+int		raycaster(t_vars *vars, t_data *data, t_param *param);
 
 /*
 **		raycaster2.c
 */
-void	get_stripe(t_data *data);
+void	get_stripe(t_data *data, t_param *param);
 void	get_texture_coor(t_data *data);
 void	texture_map(t_vars *vars, t_data *data, int x);
 void	get_fps(t_vars *vars, t_time *time);

@@ -6,21 +6,21 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 02:30:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/17 16:06:14 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 19:22:21 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 
-void	get_stripe(t_data *data)
+void	get_stripe(t_data *data, t_param *param)
 {
-	data->stripe_len = (int)(WIN_HEIGHT / data->perpwalldist);
-	data->pixeltop = -data->stripe_len / 2 + WIN_HEIGHT / 2;
+	data->stripe_len = (int)(param->win_height / data->perpwalldist);
+	data->pixeltop = -data->stripe_len / 2 + param->win_height / 2;
 	if (data->pixeltop < 0)
 		data->pixeltop = 0;
-	data->pixelbot = data->stripe_len / 2 + WIN_HEIGHT / 2;
-	if (data->pixelbot >= WIN_HEIGHT)
-		data->pixelbot = WIN_HEIGHT - 1;
+	data->pixelbot = data->stripe_len / 2 + param->win_height / 2;
+	if (data->pixelbot >= param->win_height)
+		data->pixelbot = param->win_height - 1;
 }
 
 /*void	get_texture_coor(t_data *data)

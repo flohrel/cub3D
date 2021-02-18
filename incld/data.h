@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_type.h                                        :+:      :+:    :+:   */
+/*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/18 17:21:06 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 19:21:51 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # define TEX_WIDTH	64
 # define TEX_HEIGHT	64
 
-# include "cub3d.h"
+# include "stdbool.h"
+# include "stdint.h"
 
 typedef struct	s_img
 {
@@ -71,8 +72,8 @@ typedef struct	s_time
 
 typedef struct	s_param
 {
-	unsigned int	win_height;
-	unsigned int	win_width;
+	int				win_height;
+	int				win_width;
 	uint32_t		floor_color;
 	uint32_t		ceil_color;
 	char			*texture_path[5];

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:02:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/18 17:14:41 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/18 20:51:47 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		error_handler(char *error_msg)
 {
 	printf("Error\n");
 	if (errno == 0)
-		perror(error_msg);
+		printf("%s\n", error_msg);
 	else
 		printf("%s", strerror(errno));
 	return (ERROR);
@@ -78,16 +78,12 @@ int		set_parameter(t_param *param, char **sstr)
 
 int		parse_param(int fd, t_param *param)
 {
-	int		i;
 	int		ret;
 	char	*line;
 	char	**sstr;
 
 	ret = 1;
 	param->flags = 0xFF;
-	i = -1;
-	while (++i < 5)
-		param->texture_path[i] = NULL;
 	while (param->flags && ret > 0)
 	{
 		line = NULL;
@@ -96,22 +92,10 @@ int		parse_param(int fd, t_param *param)
 		if (*sstr && set_parameter(param, sstr) == -1)
 			ret = error_handler("Bad .cub file - bad parameter");
 		free(line);
-		free(sstr);
+		free_sstr(sstr);
 	}
+
 	return (ret);
-}
-
-int		load_texture(t_vars *vars, t_param *param)
-{
-	int	i;
-
-	i = -1;
-	while (++i < 5)
-	{
-		if (xpm_to_img(vars, vars->textures[i], param->texture_path[i]) == -1)
-			return (ERROR);
-	}
-	return (SUCCESS);
 }
 
 int		parser(t_vars *vars, int ac, char **av)
@@ -136,8 +120,6 @@ int		parser(t_vars *vars, int ac, char **av)
 		return (ERROR);
 	if (param->flags)
 		return (error_handler("Bad .cub file - parameter missing"));
-	if (load_texture(vars, param) == -1)
-		return (error_handler("Bad .cub file - texture not found"));
 //	if (parse_map(fd, vars->map) == -1)
 //		return (error_handler("Bad .cub file - map error"));
 	return (0);
