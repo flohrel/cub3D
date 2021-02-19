@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 20:02:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/18 19:20:21 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/19 12:53:36 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,5 @@ void	move_backward(t_vars *vars, t_time *time);
 void	move_forward(t_vars *vars, t_time *time);
 void	strafe_right(t_vars *vars, t_time *time);
 void	strafe_left(t_vars *vars, t_time *time);
-
-extern int	g_map[MAP_WIDTH][MAP_HEIGHT];
 
 #endif

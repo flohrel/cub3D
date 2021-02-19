@@ -1,10 +1,10 @@
 R 800 600
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./rsrc/textures/wall1.xpm
+SO ./rsrc/textures/wall2.xpm
+WE ./rsrc/textures/wall3.xpm
+EA ./rsrc/textures/wall4.xpm
 
-S ./path_to_the_sprite_texture
+S ./rsrc/textures/barrel.xpm
 F 220,100,0
 C 225,30,0
 

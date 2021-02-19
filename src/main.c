@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/18 20:58:04 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/19 14:47:32 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ int		render_next_frame(t_vars *vars)
 
 	screen = vars->screen;
 	ft_bzero(screen->addr, screen->line_length * vars->param->win_height);
-	raycaster(vars, vars->data, vars->param);
-	get_input(vars, vars->time, vars->kbflags);
+//	raycaster(vars, vars->data, vars->param);
+//	get_input(vars, vars->time, vars->kbflags);
 	mlx_put_image_to_window(vars->mlx, vars->win, screen->image, 0, 0);
-	get_fps(vars, vars->time);
+//	get_fps(vars, vars->time);
 	return (0);
 }
 
@@ -84,9 +84,8 @@ void	init_vars(t_vars *vars, t_param *param)
 	while (++i < 5)
 	{
 		param->texture_path[i] = NULL;
-		vars->textures[i] = NULL;
+		vars->textures[i].image = NULL;
 	}
-	vars->screen = NULL;
 	vars->win = NULL;
 	vars->mlx = NULL;
 }
@@ -109,11 +108,11 @@ int		main(int ac, char **av)
 		new_screen(&vars, &screen, param.win_width, param.win_height) == -1 ||
 		load_texture(&vars, &param) == -1)
 		return (exit_program(&vars));
-/*	init_data(&vars, vars.data, vars.time);
+	init_data(&vars, vars.data, vars.time);
 	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
 	mlx_hook(vars.win, 3, (1L << 1), key_release, &(vars.kbflags));
 	mlx_hook(vars.win, EXIT_EVENT, EXIT_WIN_MASK, exit_program, &vars);
 	mlx_loop_hook(vars.mlx, render_next_frame, &vars);
-	mlx_loop(vars.mlx);*/
+	mlx_loop(vars.mlx);
 	return (0);
 }
