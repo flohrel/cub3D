@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:02:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/19 15:25:47 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/19 16:57:29 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,24 +97,27 @@ int		parse_param(int fd, t_param *param)
 	return (ret);
 }
 
-int		parse_map(int fd, int **map, t_param *param)
+char	**get_map(int fd, t_param *param)
 {
 	int		ret;
 	char	*line;
-	t_list	*
+	char	**map;
 
-	ret = 1;
-	param->map_height = 0;
-	while (ret > 0)
-	{
-		line = NULL;
-		ret = get_next_line(fd, &line);
-		ft_lstadd_back();
-		free(line);
-	}
+	line = NULL;
+	ret = get_next_line(fd, &line);
 	if (ret == -1)
-		return (ret);
+		return (NULL);
+	if (!ret)
+	{
+		
+	}
+}
 
+int		parse_map(int fd, char **map, t_param *param)
+{
+	map = get_map(fd);
+	if (!map)
+		return (error_handler(NULL));
 }
 
 int		parser(t_vars *vars, int ac, char **av)
@@ -140,6 +143,8 @@ int		parser(t_vars *vars, int ac, char **av)
 	if (param->flags)
 		return (error_handler("Bad .cub file - parameter missing"));
 	if (parse_map(fd, vars->map, param) == -1)
-		return (error_handler("Bad .cub file - map error"));
+		return (ERROR);
+	if (close(fd) == -1)
+		return (error_handler(NULL));
 	return (0);
 }
