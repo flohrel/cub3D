@@ -1,4 +1,5 @@
 R 800 600
+
 NO ./rsrc/textures/wall1.xpm
 SO ./rsrc/textures/wall2.xpm
 WE ./rsrc/textures/wall3.xpm

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/18 17:23:28 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/22 15:38:28 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <errno.h>
 # include <string.h>
 # include <fcntl.h>
+# include <sys/types.h>
 
 /*
 **		platform dependant

@@ -6,20 +6,24 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:38:45 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/19 15:05:10 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/22 15:44:56 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "platform/mac.h"
 
-int		exit_program(t_vars *vars)
+void	get_screen_size(t_vars *vars, t_param *param)
+{
+	(void)vars;
+	(void)param;
+	return ;
+}
+
+void	free_textures(t_vars *vars, t_param *param)
 {
 	int		i;
-	t_param	*param;
-	t_img	*screen;
 
 	i = -1;
-	param = vars->param;
 	while (++i < 5)
 	{
 		if (param->texture_path[i])
@@ -27,6 +31,13 @@ int		exit_program(t_vars *vars)
 		if (vars->textures[i].image)
 			mlx_destroy_image(vars->mlx, vars->textures[i].image);
 	}
+}
+
+int		exit_program(t_vars *vars)
+{
+	t_img	*screen;
+
+	free_textures(vars, vars->param);
 	screen = vars->screen;
 	if (vars->mlx)
 	{

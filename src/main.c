@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/21 16:55:50 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/22 16:19:35 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int		new_window(t_vars *vars)
 	param = vars->param;
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
-		exit(-1);
+		exit_program(vars);
+	get_screen_size(vars, vars->param);
 	vars->win = mlx_new_window(vars->mlx, param->win_width,
 		param->win_height, "cub3D");
 	if (!vars->win)

@@ -4,13 +4,14 @@
 
 NAME		=	cub3D
 
-VPATH		=	src src/hook src/engine src/utils src/platform
+VPATH		=	src src/hook src/engine src/utils src/platform src/parser
 OBJDIR		=	obj
 LIBDIR		=	lib
 INCLDIR		=	incld
 
 SRC			=	main.c \
 				parse.c \
+				parse_map.c \
 				raycaster.c \
 				raycaster2.c \
 				cam_move.c \
