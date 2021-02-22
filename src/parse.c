@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:02:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/19 16:57:29 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/22 11:56:38 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,23 @@ int		parse_param(int fd, t_param *param)
 	return (ret);
 }
 
-char	**get_map(int fd, t_param *param)
+char	**map_alloc(char *line, t_param *param, int index)
+{
+	char	**map;
+
+	param->map_height = index;
+	map = ft_calloc(index + 1, sizeof(char *));
+	if (!map)
+		return (map);
+	map[index] = NULL;
+	if (*line)
+		map[index - 1] = line;
+	else
+		free(line);
+	return (map);
+}
+
+char	**get_map(int fd, t_param *param, int index)
 {
 	int		ret;
 	char	*line;
@@ -107,17 +123,38 @@ char	**get_map(int fd, t_param *param)
 	ret = get_next_line(fd, &line);
 	if (ret == -1)
 		return (NULL);
-	if (!ret)
+	if (ret == 0)
 	{
-		
+		if (*line)
+			map = map_alloc(line, param, index + 1);
+		else
+			map = map_alloc(line, param, index);
+		return (map);
 	}
+	if (!(*line))
+	{
+		free(line);
+		return (get_map(fd, param, index));
+	}
+	map = get_map(fd, param, index + 1);
+	map[index] = line;
+	return (map);
 }
 
 int		parse_map(int fd, char **map, t_param *param)
 {
-	map = get_map(fd);
+	map = get_map(fd, param, 0);
 	if (!map)
 		return (error_handler(NULL));
+	else
+	{
+		while (*map)
+		{
+			printf("%s\n", *map);
+			map++;
+		}
+	}
+	return (0);
 }
 
 int		parser(t_vars *vars, int ac, char **av)

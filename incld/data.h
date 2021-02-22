@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/19 13:19:40 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/22 11:34:59 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct	s_vars
 	t_data		*data;
 	t_time		*time;
 	t_img		textures[5];
-	int			**map;
+	char		**map;
 	int			kbflags;
 }				t_vars;
 
