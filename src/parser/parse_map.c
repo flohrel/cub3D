@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 13:10:19 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/23 04:11:48 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/23 04:25:24 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int		get_direction(char cardinal, t_vect *dir)
 	return (0);
 }
 
+/* this function also checks bad chars
+*/
 int		get_position(t_param *param, char **map)
 {
 	t_ivect	pos;
@@ -112,7 +114,7 @@ int		get_position(t_param *param, char **map)
 	return (SUCCESS);
 }
 
-int		parse_map(int fd, char **map, t_param *param)
+int		parse_map(int fd, char **map, t_data *data, t_param *param)
 {
 	int	len;
 	int	i;
@@ -131,6 +133,9 @@ int		parse_map(int fd, char **map, t_param *param)
 		}
 		if (get_position(param, map) == -1)
 			return (ERROR);
+		if (check_borders(param, map));
+			return (ERROR);
+		char_to_int(data, map);
 	}
 	return (0);
 }

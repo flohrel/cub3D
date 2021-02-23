@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:02:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/22 16:05:44 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/23 04:24:51 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int		parser(t_vars *vars, int ac, char **av)
 		return (ERROR);
 	if (param->flags)
 		return (error_handler("Bad .cub file - parameter missing"));
-	if (parse_map(fd, vars->map, param) == -1)
+	if (parse_map(fd, vars->map, vars->data, param) == -1)
 		return (error_handler("Bad map"));
 	if (close(fd) == -1)
 		return (error_handler(NULL));
