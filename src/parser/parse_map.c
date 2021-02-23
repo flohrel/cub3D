@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 13:10:19 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/23 03:12:11 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/23 03:25:45 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,14 @@ int		get_direction(char cardinal, t_vect *dir)
 		dir->x = 0;
 		dir->y = 1;
 	}
-	else
+	else if (cardinal == 'E')
 	{
 		dir->x = 0;
 		dir->y = -1;
 	}
+	else
+		return (-1);
+	return (0);
 }
 
 int		get_position(t_param *param, char **map)
@@ -93,16 +96,20 @@ int		get_position(t_param *param, char **map)
 		x = -1;
 		while (++x < param->map_width)
 		{
-			if (ft_isalpha(map[y][x]))
+			if (ft_isupper(map[y][x]))
 			{
 				printf("pos:y=%dx=%d dir:%c\n", y, x, map[y][x]);
 				found = true;
 				param->pos.x = x;
 				param->pos.y = y;
-				get_direction(map[y][x], &param->dir);
+				if (get_direction(map[y][x], &param->dir) == 0)
+					return (SUCCESS);
+				else
+					return (ERROR);
 			}
 		}
 	}
+	return (ERROR);
 }
 
 int		parse_map(int fd, char **map, t_param *param)
