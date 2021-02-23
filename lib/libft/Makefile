@@ -6,7 +6,7 @@
 #    By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 16:04:42 by flohrel           #+#    #+#              #
-#    Updated: 2021/02/23 03:20:05 by flohrel          ###   ########.fr        #
+#    Updated: 2021/02/23 03:34:34 by flohrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ STR			=	ft_memccpy.c \
 				ft_strlcpy.c \
 				ft_strlen.c \
 				ft_strmapi.c \
+				ft_strcmp.c \
 				ft_strncmp.c \
 				ft_strnstr.c \
 				ft_strrchr.c \

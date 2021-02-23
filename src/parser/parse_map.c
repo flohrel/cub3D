@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 13:10:19 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/23 03:25:45 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/23 04:11:48 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,31 +85,31 @@ int		get_direction(char cardinal, t_vect *dir)
 
 int		get_position(t_param *param, char **map)
 {
-	int		x;
-	int		y;
+	t_ivect	pos;
 	bool	found;
 
-	y = -1;
+	pos.y = -1;
 	found = false;
-	while (++y < param->map_height)
+	while (++pos.y < param->map_height)
 	{
-		x = -1;
-		while (++x < param->map_width)
+		pos.x = -1;
+		while (++(pos.x) < param->map_width)
 		{
-			if (ft_isupper(map[y][x]))
+			if (!ft_strchr("012NSEW ", map[pos.y][pos.x]))
+				return (ERROR);
+			if (ft_isupper(map[pos.y][pos.x]))
 			{
-				printf("pos:y=%dx=%d dir:%c\n", y, x, map[y][x]);
+				if (found == true)
+					return (ERROR);
 				found = true;
-				param->pos.x = x;
-				param->pos.y = y;
-				if (get_direction(map[y][x], &param->dir) == 0)
-					return (SUCCESS);
-				else
+				param->pos.x = pos.x;
+				param->pos.y = pos.y;
+				if (get_direction(map[pos.y][pos.x], &param->dir) == -1)
 					return (ERROR);
 			}
 		}
 	}
-	return (ERROR);
+	return (SUCCESS);
 }
 
 int		parse_map(int fd, char **map, t_param *param)
@@ -129,7 +129,7 @@ int		parse_map(int fd, char **map, t_param *param)
 			if (len > param->map_width)
 				param->map_width = len;
 		}
-		if (get_position(map) == -1)
+		if (get_position(param, map) == -1)
 			return (ERROR);
 	}
 	return (0);
