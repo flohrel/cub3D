@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/22 11:34:59 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/23 02:55:02 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct	s_param
 	uint32_t	ceil_color;
 	char		*texture_path[5];
 	char		flags;
+	t_vect		pos;
+	t_vect		dir;
 	bool		save;
 }				t_param;
 

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 13:10:19 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/22 16:51:52 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/23 03:12:11 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,51 @@ char	**get_map(int fd, t_param *param, int index)
 	return (map);
 }
 
-int		seek_walls(char **map, int y, int x)
+int		get_direction(char cardinal, t_vect *dir)
 {
-	if ()
-	if (map[y][x])
+	if (cardinal == 'N')
+	{
+		dir->x = -1;
+		dir->y = 0;
+	}
+	else if (cardinal == 'S')
+	{
+		dir->x = 1;
+		dir->y = 0;
+	}
+	else if (cardinal == 'W')
+	{
+		dir->x = 0;
+		dir->y = 1;
+	}
+	else
+	{
+		dir->x = 0;
+		dir->y = -1;
+	}
 }
 
-int		get_borders(t_param *param, char **map)
+int		get_position(t_param *param, char **map)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	bool	found;
 
 	y = -1;
+	found = false;
 	while (++y < param->map_height)
 	{
 		x = -1;
 		while (++x < param->map_width)
 		{
-			if (!map[y][x] && (seek_walls(map, y, x) == -1))
-				return (ERROR);
+			if (ft_isalpha(map[y][x]))
+			{
+				printf("pos:y=%dx=%d dir:%c\n", y, x, map[y][x]);
+				found = true;
+				param->pos.x = x;
+				param->pos.y = y;
+				get_direction(map[y][x], &param->dir);
+			}
 		}
 	}
 }
@@ -96,7 +122,7 @@ int		parse_map(int fd, char **map, t_param *param)
 			if (len > param->map_width)
 				param->map_width = len;
 		}
-		if (get_borders(map) == -1)
+		if (get_position(map) == -1)
 			return (ERROR);
 	}
 	return (0);

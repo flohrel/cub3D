@@ -6,7 +6,7 @@
 #    By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 16:04:42 by flohrel           #+#    #+#              #
-#    Updated: 2021/02/18 15:39:31 by flohrel          ###   ########.fr        #
+#    Updated: 2021/02/23 03:20:05 by flohrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,13 @@ CONV		=	ft_atoi.c \
 				ft_lltoa.c \
 				ft_ltoa_base.c \
 				ft_lltoa_base.c \
-				ft_ultoa_base.c
+				ft_ultoa_base.c \
+				ft_uint_to_utf8.c
 
 CTYPE		=	ft_isalnum.c \
 				ft_isalpha.c \
+				ft_isupper.c \
+				ft_islower.c \
 				ft_isascii.c \
 				ft_isdigit.c \
 				ft_isprint.c \
@@ -70,12 +73,10 @@ STR			=	ft_memccpy.c \
 				ft_strchr.c \
 				ft_strdup.c \
 				ft_strjoin.c \
-				ft_strcpy.c \
 				ft_strlcat.c \
 				ft_strlcpy.c \
 				ft_strlen.c \
 				ft_strmapi.c \
-				ft_strcmp.c \
 				ft_strncmp.c \
 				ft_strnstr.c \
 				ft_strrchr.c \

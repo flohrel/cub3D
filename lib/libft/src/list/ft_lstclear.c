@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 18:51:19 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/15 19:55:18 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/01/16 15:55:05 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*lptr;
 	t_list	*next;
 
-	if (lst && *lst && del)
+	if (*lst && del)
 	{
 		lptr = *lst;
 		while (lptr)

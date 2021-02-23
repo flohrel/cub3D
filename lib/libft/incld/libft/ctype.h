@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 15:29:20 by flohrel           #+#    #+#             */
-/*   Updated: 2021/01/16 15:36:22 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/23 03:19:25 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
+int				ft_islower(int c);
+int				ft_isupper(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);

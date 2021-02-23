@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_islower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 14:57:08 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/18 14:59:00 by flohrel          ###   ########.fr       */
+/*   Created: 2021/02/23 03:18:24 by flohrel           #+#    #+#             */
+/*   Updated: 2021/02/23 03:18:47 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/string.h"
+#include "ctype.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+int	ft_islower(int c)
 {
-	int i;
-
-	i = 0;
-	while (*src)
-	{
-		dest[i++] = *src++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	return (!((c < 'a') || (c > 'z')));
 }
