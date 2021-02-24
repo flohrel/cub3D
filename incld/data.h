@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/23 04:23:49 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/24 14:58:00 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct	s_ivect
 
 typedef struct	s_data
 {
-	int			**map;
 	double		xcam;
 	t_vect		pos;
 	t_vect		dir;
@@ -77,11 +76,12 @@ typedef struct	s_param
 	int			win_width;
 	int			map_height;
 	int			map_width;
+	int			**map;
 	uint32_t	floor_color;
 	uint32_t	ceil_color;
 	char		*texture_path[5];
 	char		flags;
-	t_vect		pos;
+	t_ivect		pos;
 	t_vect		dir;
 	bool		save;
 }				t_param;

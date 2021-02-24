@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 13:10:19 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/23 04:25:24 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/24 16:38:45 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		get_position(t_param *param, char **map)
 	while (++pos.y < param->map_height)
 	{
 		pos.x = -1;
-		while (++(pos.x) < param->map_width)
+		while (map[pos.y][++(pos.x)])
 		{
 			if (!ft_strchr("012NSEW ", map[pos.y][pos.x]))
 				return (ERROR);
@@ -114,28 +114,27 @@ int		get_position(t_param *param, char **map)
 	return (SUCCESS);
 }
 
-int		parse_map(int fd, char **map, t_data *data, t_param *param)
+int		parse_map(int fd, t_vars *vars, t_param *param)
 {
-	int	len;
-	int	i;
+	int		len;
+	int		i;
 
-	map = get_map(fd, param, 0);
-	if (!map)
+	vars->map = get_map(fd, param, 0);
+	if (!vars->map)
 		return (error_handler(NULL));
 	else
 	{
 		i = -1;
-		while (map[++i])
+		while (vars->map[++i])
 		{
-			len = ft_strlen(map[i]);
+			len = ft_strlen(vars->map[i]);
 			if (len > param->map_width)
 				param->map_width = len;
 		}
-		if (get_position(param, map) == -1)
+		if (get_position(param, vars->map) == -1 ||
+			check_borders(vars, param) == -1)
 			return (ERROR);
-		if (check_borders(param, map));
-			return (ERROR);
-		char_to_int(data, map);
+//		char_to_int(data, map);
 	}
 	return (0);
 }
