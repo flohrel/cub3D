@@ -24,7 +24,7 @@ LIB			=	libft.a
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)
 
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS		=	-Wall -Werror -Wextra -g3
 INCFLAGS	=	-I./$(INCLDIR) -I./$(LIBDIR)/libft/incld
 LFLAGS		=	-L./$(LIBDIR)/libft -lft
 RM			=	/bin/rm -rf

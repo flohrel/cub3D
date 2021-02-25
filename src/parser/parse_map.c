@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 13:10:19 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/24 23:17:43 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/25 01:33:02 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,11 @@ int		get_position(t_param *param, char **map)
 
 int		parse_map(int fd, t_vars *vars, t_param *param)
 {
+	int		ret;
 	int		len;
 	int		i;
 
+	ret = SUCCESS;
 	vars->map = get_map(fd, param, 0);
 	if (!vars->map)
 		return (error_handler(NULL));
@@ -133,7 +135,8 @@ int		parse_map(int fd, t_vars *vars, t_param *param)
 		}
 		if (get_position(param, vars->map) == -1 ||
 			check_borders(vars, param) == -1)
-			return (ERROR);
+			ret = ERROR;
+		free_sstr(vars->map);
 	}
-	return (0);
+	return (ret);
 }
