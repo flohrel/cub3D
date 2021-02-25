@@ -6,15 +6,12 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/24 14:58:00 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/25 01:56:00 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_TYPE_H
 # define DATA_TYPE_H
-
-# define TEX_WIDTH	64
-# define TEX_HEIGHT	64
 
 # include "stdbool.h"
 # include "stdint.h"

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/22 16:19:35 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/25 01:47:23 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int		new_window(t_vars *vars)
 	return (0);
 }
 
-void	init_data(t_vars *vars, t_data *data, t_time *time)
+void	init_data(t_vars *vars, t_param* param, t_data *data, t_time *time)
 {
-	data->pos.x = 22;
-	data->pos.y = 12;
-	data->dir.x = -1;
-	data->dir.y = 0;
+	data->pos.x = param->pos.x;
+	data->pos.y = param->pos.y;
+	data->dir.x = param->dir.x;
+	data->dir.y = param->dir.y;
 	data->plane.x = 0;
 	data->plane.y = 0.66;
 	time->time = 0;
@@ -68,10 +68,10 @@ int		render_next_frame(t_vars *vars)
 
 	screen = vars->screen;
 	ft_bzero(screen->addr, screen->line_length * vars->param->win_height);
-//	raycaster(vars, vars->data, vars->param);
-//	get_input(vars, vars->time, vars->kbflags);
+	raycaster(vars, vars->data, vars->param, vars->param->map);
+	get_input(vars, vars->time, vars->kbflags);
 	mlx_put_image_to_window(vars->mlx, vars->win, screen->image, 0, 0);
-//	get_fps(vars, vars->time);
+	get_fps(vars, vars->time);
 	return (0);
 }
 
@@ -111,7 +111,7 @@ int		main(int ac, char **av)
 		new_screen(&vars, &screen, param.win_width, param.win_height) == -1 ||
 		load_texture(&vars, &param) == -1)
 		return (exit_program(&vars));
-	init_data(&vars, vars.data, vars.time);
+	init_data(&vars, vars.param, vars.data, vars.time);
 	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
 	mlx_hook(vars.win, 3, (1L << 1), key_release, &(vars.kbflags));
 	mlx_hook(vars.win, EXIT_EVENT, EXIT_WIN_MASK, exit_program, &vars);

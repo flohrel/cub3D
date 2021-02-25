@@ -6,13 +6,11 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/18 20:26:03 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/25 01:51:22 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
-
-int g_map[MAP_WIDTH][MAP_HEIGHT] = { {0, 1}, {1, 0} };
 
 void	init_vect(t_data *data)
 {
@@ -52,7 +50,7 @@ void	get_sidedist(t_data *data)
 	}
 }
 
-void	dda(t_data *data)
+void	dda(t_data *data, int **map)
 {
 	int hit;
 	
@@ -71,7 +69,7 @@ void	dda(t_data *data)
 			data->map.y += data->step.y;
 			data->side = 1;
 		}
-		if (g_map[data->map.x][data->map.y] > 0)
+		if (map[data->map.y][data->map.x] > 0)
 			hit = 1;
 	}
 }
@@ -86,7 +84,7 @@ void	get_walldist(t_data *data)
 			+ (1 - data->step.y) / 2) / data->raydir.y;
 }
 
-int		raycaster(t_vars *vars, t_data *data, t_param *param)
+int		raycaster(t_vars *vars, t_data *data, t_param *param, int **map)
 {
 	int	x;
 
@@ -97,11 +95,11 @@ int		raycaster(t_vars *vars, t_data *data, t_param *param)
 		data->xcam = 2 * x / (double)param->win_width - 1;
 		init_vect(data);
 		get_sidedist(data);
-		dda(data);
+		dda(data, map);
 		get_walldist(data);
 		get_stripe(data, param);
-//		get_texture_coor(data);
-//		texture_map(vars, vars->data, x);
+		get_texture_coor(data, map);
+		texture_map(vars, vars->data, x);
 	}
 	return (0);
 }

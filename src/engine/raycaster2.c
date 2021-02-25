@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 02:30:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/22 16:19:32 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/25 01:55:02 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	get_stripe(t_data *data, t_param *param)
 		data->pixelbot = param->win_height - 1;
 }
 
-/*void	get_texture_coor(t_data *data)
+void	get_texture_coor(t_data *data, int **map)
 {
-	data->tex_id = g_map[data->map.x][data->map.y] - 1;
+	data->tex_id = map[data->map.y][data->map.x] - 1;
 	if (data->side == 0)
 		data->xwall = data->pos.y + data->perpwalldist * data->raydir.y;
 	else
@@ -46,21 +46,22 @@ void	texture_map(t_vars *vars, t_data *data, int x)
 	int			y;
 
 	step = 1.0 * TEX_HEIGHT / data->stripe_len;
-	texpos = (data->pixeltop - WIN_HEIGHT / 2 + data->stripe_len / 2) * step;
+	texpos = (data->pixeltop - vars->param->win_height / 2
+			+ data->stripe_len / 2) * step;
 	y = data->pixeltop;
 	while (y < data->pixelbot)
 	{
 		data->tex.y = (int)texpos & (TEX_HEIGHT - 1);
 		texpos += step;
-		texture = (vars->textures + data->tex_id)->content;
-		color = (uint32_t)(texture->image + TEX_HEIGHT * data->tex.y + data->tex.x);
+		texture = &vars->textures[data->tex_id];
+		color = *(uint32_t *)(texture->image + TEX_HEIGHT * data->tex.y + data->tex.x);
 		if (data->side == 1)
 			color = (color >> 1) & 8355711;
-		my_mlx_pixel_put(vars->img, x, y, color);
+		my_mlx_pixel_put(vars->screen, x, y, color);
 		y++;
 	}
 }
-*/
+
 void	get_fps(t_vars *vars, t_time *time)
 {
 	char	*fps;
