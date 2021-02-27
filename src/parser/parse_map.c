@@ -6,13 +6,13 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 13:10:19 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/25 01:33:02 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/27 17:54:11 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-char	**map_alloc(char *line, t_param *param, int index)
+char	**char_map_alloc(char *line, t_param *param, int index)
 {
 	char	**map;
 
@@ -41,9 +41,9 @@ char	**get_map(int fd, t_param *param, int index)
 	if (ret == 0)
 	{
 		if (*line)
-			map = map_alloc(line, param, index + 1);
+			map = char_map_alloc(line, param, index + 1);
 		else
-			map = map_alloc(line, param, index);
+			map = char_map_alloc(line, param, index);
 		return (map);
 	}
 	if (!(*line))
@@ -56,36 +56,37 @@ char	**get_map(int fd, t_param *param, int index)
 	return (map);
 }
 
-int		get_direction(char cardinal, t_vect *dir)
+void	get_direction(char cardinal, t_data *data)
 {
+	data->dir.x = 0;
+	data->dir.y = 0;
+	data->plane.x = 0;
+	data->plane.y = 0;
 	if (cardinal == 'N')
 	{
-		dir->x = 0;
-		dir->y = -1;
+		data->dir.y = -1;
+		data->plane.x = -0.66;
 	}
 	else if (cardinal == 'S')
 	{
-		dir->x = 0;
-		dir->y = 1;
+		data->dir.y = 1;
+		data->plane.x = 0.66;
 	}
 	else if (cardinal == 'W')
 	{
-		dir->x = -1;
-		dir->y = 0;
+		data->dir.x = 1;
+		data->plane.y = -0.66;
 	}
 	else if (cardinal == 'E')
 	{
-		dir->x = 1;
-		dir->y = 0;
+		data->dir.x = -1;
+		data->plane.y = 0.66;
 	}
-	else
-		return (-1);
-	return (0);
 }
 
 /* this function also checks bad chars
 */
-int		get_position(t_param *param, char **map)
+int		get_position(t_param *param, t_data *data, char **map)
 {
 	t_ivect	pos;
 	bool	found;
@@ -106,8 +107,7 @@ int		get_position(t_param *param, char **map)
 				found = true;
 				param->pos.x = pos.x;
 				param->pos.y = pos.y;
-				if (get_direction(map[pos.y][pos.x], &param->dir) == -1)
-					return (ERROR);
+				get_direction(map[pos.y][pos.x], data);
 			}
 		}
 	}
@@ -133,7 +133,7 @@ int		parse_map(int fd, t_vars *vars, t_param *param)
 			if (len > param->map_width)
 				param->map_width = len;
 		}
-		if (get_position(param, vars->map) == -1 ||
+		if (get_position(param, vars->data, vars->map) == -1 ||
 			check_borders(vars, param) == -1)
 			ret = ERROR;
 		free_sstr(vars->map);

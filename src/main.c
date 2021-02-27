@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/25 01:47:23 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/27 17:51:00 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,8 @@ int		new_window(t_vars *vars)
 
 void	init_data(t_vars *vars, t_param* param, t_data *data, t_time *time)
 {
-	data->pos.x = param->pos.x;
+	data->pos.x = param->map_width - param->pos.x - 1;
 	data->pos.y = param->pos.y;
-	data->dir.x = param->dir.x;
-	data->dir.y = param->dir.y;
-	data->plane.x = 0;
-	data->plane.y = 0.66;
 	time->time = 0;
 	time->old_time = 0;
 	vars->kbflags = 0;

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:02:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/24 15:55:05 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/26 17:40:58 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int		set_parameter(t_param *param, char **sstr)
 		param->texture_path[0] = ft_strdup(sstr[1]);
 	else if (!ft_strcmp(sstr[0], "SO") && clear_flag((int *)&param->flags, SO))
 		param->texture_path[1] = ft_strdup(sstr[1]);
-	else if (!ft_strcmp(sstr[0], "WE") && clear_flag((int *)&param->flags, WE))
-		param->texture_path[2] = ft_strdup(sstr[1]);
 	else if (!ft_strcmp(sstr[0], "EA") && clear_flag((int *)&param->flags, EA))
+		param->texture_path[2] = ft_strdup(sstr[1]);
+	else if (!ft_strcmp(sstr[0], "WE") && clear_flag((int *)&param->flags, WE))
 		param->texture_path[3] = ft_strdup(sstr[1]);
 	else if (!ft_strcmp(sstr[0], "S") && clear_flag((int *)&param->flags, S))
 		param->texture_path[4] = ft_strdup(sstr[1]);

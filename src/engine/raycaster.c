@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/25 01:51:22 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/26 17:37:39 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	dda(t_data *data, int **map)
 			data->map.y += data->step.y;
 			data->side = 1;
 		}
-		if (map[data->map.y][data->map.x] > 0)
+		if (map[data->map.x][data->map.y] > 0)
 			hit = 1;
 	}
 }
@@ -86,9 +86,8 @@ void	get_walldist(t_data *data)
 
 int		raycaster(t_vars *vars, t_data *data, t_param *param, int **map)
 {
-	int	x;
+	int		x;
 
-	(void)vars;
 	x = -1;
 	while (++x < param->win_width)
 	{
@@ -99,7 +98,20 @@ int		raycaster(t_vars *vars, t_data *data, t_param *param, int **map)
 		get_walldist(data);
 		get_stripe(data, param);
 		get_texture_coor(data, map);
-		texture_map(vars, vars->data, x);
+		int color;
+		switch(map[data->map.x][data->map.y])
+		{
+			case 1:  color = RED;  break;
+			case 2:  color = GREEN;  break;
+			case 3:  color = BLUE;   break;
+			case 4:  color = WHITE;  break;
+			default: color = YELLOW; break;
+		}
+		//give x and y sides different brightness
+		if (data->side == 1)
+			color = (color >> 1) & 8355711;
+		//draw the pixels of the stripe as a vertical line
+		vertical_line(vars->screen, x, data->pixeltop, data->pixelbot, color);
 	}
 	return (0);
 }

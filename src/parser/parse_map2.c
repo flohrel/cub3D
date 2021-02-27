@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:28:48 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/25 01:08:10 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/27 17:58:38 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,43 @@ int	check_borders2(int y, int x, char **check_grid, t_vars *vars)
 	return (0);
 }
 
+int	int_map_alloc(t_param *param)
+{
+	int	i;
+
+	param->map = ft_calloc(param->map_width, sizeof(int *));
+	if (!param->map)
+		return (ERROR);
+	i = -1;
+	while (++i < param->map_width)
+	{
+		param->map[i] = ft_calloc(param->map_height, sizeof(int));
+		if (!param->map[i])
+			return (ERROR);
+	}
+	return (SUCCESS);
+}
+
 int	char_to_int(t_vars *vars, t_param *param, char **check_grid)
 {
 	int	i;
 	int	j;
 
-	param->map = ft_calloc(param->map_height, sizeof(int *));
-	if (!param->map)
+	if (int_map_alloc(param) == -1)
 		return (ERROR);
 	i = -1;
-	while (++i < param->map_height)
+	while (++i < param->map_width)
 	{
-		param->map[i] = ft_calloc(param->map_width, sizeof(int));
-		if (!param->map[i])
-			return (ERROR);
 		j = -1;
-		while (++j < param->map_width)
+		while (++j < param->map_height)
 		{
-			if (!check_grid[i + 1][j + 1])
-				param->map[i][j] = 1;
-			else if ((i == param->pos.y) && (j == param->pos.x))
-				param->map[i][j] = 3;
+			if (!check_grid[j + 1][i + 1])
+				param->map[param->map_width - i - 1][j] = 1;
 			else
-				param->map[i][j] = vars->map[i][j] - '0';
+				param->map[param->map_width - i - 1][j] = vars->map[j][i] - '0';
 		}
 	}
+	param->map[param->map_width - param->pos.x - 1][param->pos.y] = 0;
 	return (SUCCESS);
 }
 

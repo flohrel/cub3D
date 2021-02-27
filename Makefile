@@ -31,8 +31,8 @@ RM			=	/bin/rm -rf
 UNAME		:=	$(shell uname -s)
 
 ifeq ($(UNAME),Linux)
-	INCFLAGS += -I/usr/include -I./$(LIBDIR)/mlx-linux -O3
-	LFLAGS += -L./$(LIBDIR)/mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+	INCFLAGS += -I/usr/include -I./$(LIBDIR)/mlx_Linux -O3
+	LFLAGS += -L./$(LIBDIR)/mlx_Linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 	SRC += linux.c
 endif
 ifeq ($(UNAME),Darwin)
