@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:48:49 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/25 01:40:43 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 05:49:09 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	free_map(t_param *param)
 	i = -1;
 	if (param->map)
 	{
-		while (++i < param->map_height)
+		while (++i < param->map_width)
 			if (param->map[i])
 				free(param->map[i]);
 		free(param->map);
@@ -59,6 +59,7 @@ int		exit_program(t_vars *vars)
 	free_textures(vars, vars->param);
 	screen = vars->screen;
 	free_map(vars->param);
+	free(vars->data->zbuffer);
 	if (vars->mlx)
 	{
 		if (screen->image)

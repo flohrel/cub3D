@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:55:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/22 15:38:28 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 04:56:56 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 /*
 **		utils
 */
+# include "utils/utils.h"
 # include "utils/flag.h"
 # include "utils/keycode.h"
 # include "utils/color.h"

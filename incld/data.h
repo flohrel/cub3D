@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/27 17:17:13 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 05:37:32 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct	s_data
 	double		xwall;
 	int			tex_id;
 	t_ivect		tex;
+	double		*zbuffer;
 }				t_data;
 
 typedef struct	s_time
@@ -66,6 +67,11 @@ typedef struct	s_time
 	double		move_speed;
 	double		rot_speed;
 }				t_time;
+
+typedef struct	s_sprite
+{
+	t_vect	pos;
+}				t_sprite;
 
 typedef struct	s_param
 {

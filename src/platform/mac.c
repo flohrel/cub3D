@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:38:45 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/25 01:41:23 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 05:49:57 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	free_map(t_param *param)
 	i = -1;
 	if (param->map)
 	{
-		while (++i < param->map_height)
+		while (++i < param->map_width)
 			if (param->map[i])
 				free(param->map[i]);
 		free(param->map);

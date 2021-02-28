@@ -19,7 +19,8 @@ SRC			=	main.c \
 				cam_move2.c \
 				flag.c \
 				keyboard.c \
-				image.c
+				image.c \
+				utils.c
 LIB			=	libft.a
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)
 

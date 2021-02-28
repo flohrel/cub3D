@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:28:48 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/27 17:58:38 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 05:59:25 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,12 @@ int	int_map_alloc(t_param *param)
 	return (SUCCESS);
 }
 
+/*	this function also saves sprites in a list
+*/
 int	char_to_int(t_vars *vars, t_param *param, char **check_grid)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
 
 	if (int_map_alloc(param) == -1)
 		return (ERROR);
