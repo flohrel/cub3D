@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 02:30:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/26 17:31:08 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 01:14:57 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ void	get_stripe(t_data *data, t_param *param)
 		data->pixelbot = param->win_height - 1;
 }
 
-void	get_texture_coor(t_data *data, int **map)
+void	get_texture_coor(t_data *data)
 {
-	data->tex_id = map[data->map.y][data->map.x] - 1;
-	if (data->side == 0)
+	data->tex_id = data->side;
+	if (data->side < 2)
 		data->xwall = data->pos.y + data->perpwalldist * data->raydir.y;
 	else
 		data->xwall = data->pos.x + data->perpwalldist * data->raydir.x;
-	data->xwall -= floor((data->xwall));
+	data->xwall -= floor(data->xwall);
 	data->tex.x = (int)(data->xwall * (double)TEX_WIDTH);
-	if (((data->side == 0) && (data->raydir.x > 0)) ||
-		((data->side == 1) && (data->raydir.x < 0)))
+	if (((data->side < 2) && (data->raydir.x > 0)) ||
+		((data->side > 1) && (data->raydir.x < 0)))
 		data->tex.x = TEX_WIDTH - data->tex.x - 1;
 }
 
@@ -61,14 +61,13 @@ void	texture_map(t_vars *vars, t_data *data, int x)
 	texpos = (data->pixeltop - vars->param->win_height / 2
 			+ data->stripe_len / 2) * step;
 	y = data->pixeltop;
+	texture = &vars->textures[data->tex_id];
 	while (y < data->pixelbot)
 	{
 		data->tex.y = (int)texpos & (TEX_HEIGHT - 1);
 		texpos += step;
-		texture = &vars->textures[data->tex_id];
-		color = *(uint32_t *)(texture->image + TEX_HEIGHT * data->tex.y + data->tex.x);
-		if (data->side == 1)
-			color = (color >> 1) & 8355711;
+		color = *(uint32_t *)(texture->addr + (texture->line_length *
+				data->tex.y + data->tex.x * (texture->bits_per_pixel / 8)));
 		my_mlx_pixel_put(vars->screen, x, y, color);
 		y++;
 	}

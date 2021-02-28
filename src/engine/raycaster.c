@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/26 17:37:39 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/27 21:44:21 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,17 @@ void	dda(t_data *data, int **map)
 		{
 			data->sidedist.x += data->deltadist.x;
 			data->map.x += data->step.x;
-			data->side = 0;
+			data->side = 1;
+			if (data->step.x < 0)
+				data->side = 0;
 		}
 		else
 		{
 			data->sidedist.y += data->deltadist.y;
 			data->map.y += data->step.y;
-			data->side = 1;
+			data->side = 3;
+			if (data->step.y < 0)
+				data->side = 2;
 		}
 		if (map[data->map.x][data->map.y] > 0)
 			hit = 1;
@@ -76,7 +80,7 @@ void	dda(t_data *data, int **map)
 
 void	get_walldist(t_data *data)
 {
-	if (data->side == 0)
+	if (data->side < 2)
 		data->perpwalldist = (data->map.x - data->pos.x
 			+ (1 - data->step.x) / 2) / data->raydir.x;
 	else
@@ -97,8 +101,7 @@ int		raycaster(t_vars *vars, t_data *data, t_param *param, int **map)
 		dda(data, map);
 		get_walldist(data);
 		get_stripe(data, param);
-		get_texture_coor(data, map);
-		int color;
+/*		int color;
 		switch(map[data->map.x][data->map.y])
 		{
 			case 1:  color = RED;  break;
@@ -108,10 +111,12 @@ int		raycaster(t_vars *vars, t_data *data, t_param *param, int **map)
 			default: color = YELLOW; break;
 		}
 		//give x and y sides different brightness
-		if (data->side == 1)
+		if (data->side > 1)
 			color = (color >> 1) & 8355711;
 		//draw the pixels of the stripe as a vertical line
-		vertical_line(vars->screen, x, data->pixeltop, data->pixelbot, color);
+		vertical_line(vars->screen, x, data->pixeltop, data->pixelbot, color);*/
+		get_texture_coor(data);
+		texture_map(vars, data, x);
 	}
 	return (0);
 }
