@@ -6,13 +6,13 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 02:30:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 01:14:57 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 01:40:22 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 
-void	vertical_line(t_img *img, int x, int drawStart, int drawEnd, int color)
+void	draw_stripe(t_img *img, int x, int drawStart, int drawEnd, int color)
 {
 	int	y;
 
