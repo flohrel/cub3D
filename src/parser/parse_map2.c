@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:28:48 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 05:59:25 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 20:18:44 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,12 @@ int	char_to_int(t_vars *vars, t_param *param, char **check_grid)
 		{
 			if (!check_grid[j + 1][i + 1])
 				param->map[param->map_width - i - 1][j] = 1;
+			else if (vars->map[j][i] == '2')
+			{
+				if (add_sprite(vars, param->map_width - i - 1, j) == -1)
+					return (ERROR);
+				param->map[param->map_width - i - 1][j] = 0;
+			}
 			else
 				param->map[param->map_width - i - 1][j] = vars->map[j][i] - '0';
 		}

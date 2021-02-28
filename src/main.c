@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 05:44:10 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 20:00:25 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	init_vars(t_vars *vars, t_param *param)
 	param->map_width = 0;
 	vars->win = NULL;
 	vars->mlx = NULL;
+	vars->sprites = NULL;
 }
 
 void	get_input(t_vars *vars, t_time *time, int kbflags)

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 04:54:10 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 05:42:19 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 20:09:55 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,29 @@ void	free_sstr(char **sstr)
 	while (*sstr)
 		free(*sstr++);
 	free(s);
+}
+
+void	del_sprite(void *to_del)
+{
+	t_sprite	*sprite;
+	
+	sprite = (t_sprite *)to_del;
+	free(sprite);
+}
+
+int		add_sprite(t_vars *vars, int x, int y)
+{
+	t_list		*new_lst;
+	t_sprite	*new_sprite;
+
+	new_sprite = ft_calloc(1, sizeof(t_sprite));
+	if (!new_sprite)
+		return (ERROR);
+	new_sprite->pos.x = (float)x;
+	new_sprite->pos.y = (float)y;
+	new_lst = ft_lstnew(new_sprite);
+	if (!new_lst)
+		return (ERROR);
+	ft_lstadd_back(&vars->sprites, new_lst);
+	return (SUCCESS);
 }

@@ -6,15 +6,16 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 05:37:32 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/02/28 20:15:23 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_TYPE_H
 # define DATA_TYPE_H
 
-# include "stdbool.h"
-# include "stdint.h"
+# include <stdint.h>
+# include <stdbool.h>
+# include "libft/list.h"
 
 typedef struct	s_img
 {
@@ -70,7 +71,7 @@ typedef struct	s_time
 
 typedef struct	s_sprite
 {
-	t_vect	pos;
+	t_vect		pos;
 }				t_sprite;
 
 typedef struct	s_param
@@ -97,6 +98,7 @@ typedef struct	s_vars
 	t_data		*data;
 	t_time		*time;
 	t_img		textures[5];
+	t_list		*sprites;
 	char		**map;
 	int			kbflags;
 }				t_vars;
