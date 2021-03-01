@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 05:23:59 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:56:04 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	get_sidedist(t_data *data)
 void	dda(t_data *data, int **map)
 {
 	int hit;
-	
+
 	hit = 0;
 	while (hit == 0)
 	{
@@ -101,9 +101,7 @@ int		raycaster(t_vars *vars, t_data *data, t_param *param, int **map)
 		dda(data, map);
 		get_walldist(data);
 		get_stripe(data, param);
-		draw_stripe(vars->screen, x, 0, data->pixeltop, param->ceil_color);
-		draw_stripe(vars->screen, x, data->pixelbot, param->win_height,
-				param->floor_color);
+		draw_stripe(vars, x);
 		get_texture_coor(data);
 		texture_map(vars, data, x);
 		data->zbuffer[x] = data->perpwalldist;

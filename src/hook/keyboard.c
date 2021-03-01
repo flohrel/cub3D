@@ -6,11 +6,11 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 06:09:49 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/18 15:33:19 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:44:45 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "hook.h"
+#include "hook.h"
 
 int		key_press(int keycode, int *bitfield)
 {
@@ -32,7 +32,7 @@ int		key_press(int keycode, int *bitfield)
 }
 
 int		key_release(int keycode, int *bitfield)
-{	
+{
 	if (keycode == TURN_LEFT)
 		clear_flag(bitfield, TL);
 	if (keycode == TURN_RIGHT)

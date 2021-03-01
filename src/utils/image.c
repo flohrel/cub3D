@@ -6,11 +6,11 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 13:04:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/19 14:54:25 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:46:19 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "utils/image.h"
+#include "utils/image.h"
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {

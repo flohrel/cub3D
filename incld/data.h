@@ -6,12 +6,12 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 02:10:27 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 20:07:49 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_TYPE_H
-# define DATA_TYPE_H
+#ifndef DATA_H
+# define DATA_H
 
 # include <stdint.h>
 # include <stdbool.h>
@@ -113,4 +113,4 @@ typedef struct	s_vars
 	int			kbflags;
 }				t_vars;
 
-# endif
+#endif

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 14:44:48 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 02:59:46 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:42:45 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	init_sprite_vars(t_param *param, t_data *data, t_sprite *sprite)
 		sprite->draw_start.y = 0;
 	sprite->draw_end.y = sprite->height / 2 + param->win_height / 2;
 	if (sprite->draw_end.y >= param->win_height)
-		  sprite->draw_end.y = param->win_height - 1;
+		sprite->draw_end.y = param->win_height - 1;
 	sprite->width = abs((int)(param->win_height / (sprite->transform.y)));
 	sprite->draw_start.x = -sprite->width / 2 + sprite->screenx;
 	if (sprite->draw_start.x < 0)
-		  sprite->draw_start.x = 0;
+		sprite->draw_start.x = 0;
 	sprite->draw_end.x = sprite->width / 2 + sprite->screenx;
 	if (sprite->draw_end.x >= param->win_width)
 		sprite->draw_end.x = param->win_width - 1;
@@ -64,7 +64,7 @@ void	sprite_to_screen2(t_vars *vars, t_param *param, t_sprite *sprite, int x)
 	int			y;
 	uint32_t	color;
 	t_img		*texture;
-	
+
 	y = sprite->draw_start.y;
 	texture = &vars->textures[4];
 	while (y < sprite->draw_end.y)

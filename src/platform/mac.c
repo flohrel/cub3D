@@ -6,11 +6,11 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:38:45 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 20:13:53 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:46:03 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "platform/mac.h"
+#include "platform/mac.h"
 
 void	get_screen_size(t_vars *vars, t_param *param)
 {
@@ -36,7 +36,7 @@ void	free_textures(t_vars *vars, t_param *param)
 void	free_map(t_param *param)
 {
 	int	i;
-	
+
 	i = -1;
 	if (param->map)
 	{

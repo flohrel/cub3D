@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 17:19:03 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:38:27 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,39 +29,6 @@ int		new_window(t_vars *vars)
 		return (-1);
 	}
 	return (0);
-}
-
-int		init_data(t_vars *vars, t_param* param, t_data *data, t_time *time)
-{
-	data->pos.x = param->map_width - param->pos.x - 1;
-	data->pos.y = param->pos.y;
-	time->time = 0;
-	time->old_time = 0;
-	vars->kbflags = 0;
-	get_screen_size(vars, param);
-	data->zbuffer = ft_calloc(param->win_width, sizeof(double));
-	if (!data->zbuffer)
-		return (ERROR);
-	return (SUCCESS);
-}
-
-void	init_vars(t_vars *vars, t_param *param)
-{
-	int		i;
-
-	errno = 0;
-	param->save = false;
-	i = -1;
-	while (++i < 5)
-	{
-		param->texture_path[i] = NULL;
-		vars->textures[i].image = NULL;
-	}
-	param->map_height = 0;
-	param->map_width = 0;
-	vars->win = NULL;
-	vars->mlx = NULL;
-	vars->sprites = NULL;
 }
 
 void	get_input(t_vars *vars, t_time *time, int kbflags)
@@ -88,7 +55,6 @@ int		render_next_frame(t_vars *vars)
 
 	screen = vars->screen;
 	mlx_clear_window(vars->mlx, vars->win);
-//	ft_bzero(screen->addr, screen->line_length * vars->param->win_height);
 	raycaster(vars, vars->data, vars->param, vars->param->map);
 	draw_sprites(vars, vars->param, vars->data);
 	get_input(vars, vars->time, vars->kbflags);

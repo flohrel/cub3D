@@ -6,39 +6,16 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:02:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 05:02:10 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:37:10 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int		parse_rgb(uint32_t *color, char *rgb_str)
-{
-	char **rgb;
-
-	*color = 0xFF000000;
-	rgb = ft_split(rgb_str, ',');
-	if (!rgb[0] || !rgb[1] || !rgb[2])
-		return (-1);
-	*color |= ft_atoi(rgb[0]) << 16;
-	*color |= ft_atoi(rgb[1]) << 8;
-	*color |= ft_atoi(rgb[2]);
-	free_sstr(rgb);
-	return (0);
-}
-
 int		set_parameter(t_param *param, char **sstr)
 {
 	if (!ft_strcmp(sstr[0], "R"))
-	{
-		if (!sstr[1] || !sstr[2])
-			return (-1);
-		param->win_width = ft_atoi(sstr[1]);
-		param->win_height = ft_atoi(sstr[2]);
-		if (param->win_width <= 0 || param->win_height <= 0)
-			return (-1);
-		clear_flag((int *)&param->flags, R);
-	}
+		return (get_resolution(param, sstr));
 	else if (!ft_strcmp(sstr[0], "NO") && clear_flag((int *)&param->flags, NO))
 		param->texture_path[0] = ft_strdup(sstr[1]);
 	else if (!ft_strcmp(sstr[0], "SO") && clear_flag((int *)&param->flags, SO))
@@ -53,6 +30,8 @@ int		set_parameter(t_param *param, char **sstr)
 		return (parse_rgb(&param->floor_color, sstr[1]));
 	else if (!ft_strcmp(sstr[0], "C") && clear_flag((int *)&param->flags, C))
 		return (parse_rgb(&param->ceil_color, sstr[1]));
+	else
+		return (-1);
 	return (0);
 }
 

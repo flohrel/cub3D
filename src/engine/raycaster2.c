@@ -6,20 +6,30 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 02:30:55 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 01:40:22 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 20:09:11 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 
-void	draw_stripe(t_img *img, int x, int drawStart, int drawEnd, int color)
+void	draw_stripe(t_vars *vars, int x)
 {
-	int	y;
+	int		y;
+	t_data	*data;
+	t_param	*param;
 
-	y = drawStart;
-	while (y < drawEnd)
+	data = vars->data;
+	param = vars->param;
+	y = 0;
+	while (y < data->pixelbot)
 	{
-		my_mlx_pixel_put(img, x, y, color);
+		my_mlx_pixel_put(vars->screen, x, y, param->ceil_color);
+		y++;
+	}
+	y = data->pixeltop;
+	while (y < param->win_height)
+	{
+		my_mlx_pixel_put(vars->screen, x, y, param->floor_color);
 		y++;
 	}
 }

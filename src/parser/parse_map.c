@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 13:10:19 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/27 17:54:11 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:45:32 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ void	get_direction(char cardinal, t_data *data)
 	}
 }
 
-/* this function also checks bad chars
-*/
 int		get_position(t_param *param, t_data *data, char **map)
 {
 	t_ivect	pos;

@@ -11,6 +11,7 @@ INCLDIR		=	incld
 
 SRC			=	main.c \
 				parse.c \
+				parse2.c \
 				parse_map.c \
 				parse_map2.c \
 				raycaster.c \
@@ -21,7 +22,8 @@ SRC			=	main.c \
 				flag.c \
 				keyboard.c \
 				image.c \
-				utils.c
+				utils.c \
+				init.c
 LIB			=	libft.a
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)
 

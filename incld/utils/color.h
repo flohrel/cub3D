@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:57:37 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/01 16:59:08 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 20:06:34 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,4 @@
 # define VIOLET		0x8B00FF
 # define ORANGE		0xFF7F00
 
-# endif
+#endif

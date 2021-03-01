@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 20:02:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 02:38:55 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:56:29 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		raycaster(t_vars *vars, t_data *data, t_param *param, int **map);
 /*
 **		raycaster2.c
 */
-void	draw_stripe(t_img *img, int x, int drawStart, int drawEnd, int color);
+void	draw_stripe(t_vars *vars, int x);
 void	get_stripe(t_data *data, t_param *param);
 void	get_texture_coor(t_data *data);
 void	texture_map(t_vars *vars, t_data *data, int x);

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 04:54:10 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 02:58:42 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:46:26 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_sstr(char **sstr)
 void	del_sprite(void *to_del)
 {
 	t_sprite	*sprite;
-	
+
 	sprite = (t_sprite *)to_del;
 	free(sprite);
 }
