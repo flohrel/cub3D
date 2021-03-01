@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 04:54:10 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 00:36:48 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 02:58:42 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,32 @@ int		add_sprite(t_vars *vars, int x, int y)
 		return (ERROR);
 	ft_lstadd_back(&vars->sprites, new_lst);
 	return (SUCCESS);
+}
+
+void	sort_sprites(t_list **sprite_lst)
+{
+	t_list		*lptr;
+	t_list		*next;
+	bool		is_sort;
+
+	is_sort = false;
+	while (is_sort == false)
+	{
+		is_sort = true;
+		lptr = *sprite_lst;
+		while ((next = lptr->next) != NULL)
+		{
+			if (((t_sprite *)lptr->content)->distance >
+				((t_sprite *)next->content)->distance)
+			{
+				is_sort = false;
+				lptr->next = next->next;
+				next->next = lptr;
+				if (*sprite_lst == lptr)
+					*sprite_lst = next;
+			}
+			else
+				lptr = next;
+		}
+	}
 }
