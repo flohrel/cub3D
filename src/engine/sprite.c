@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 14:44:48 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 02:46:02 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 02:54:42 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,33 @@ void	init_sprite_vars(t_param *param, t_data *data, t_sprite *sprite)
 		sprite->draw_end.x = param->win_width - 1;
 }
 
+void	sprite_to_screen2(t_vars *vars, t_param *param, t_sprite *sprite, int x)
+{
+	int			d;
+	int			y;
+	uint32_t	color;
+	t_img		*texture;
+	
+	y = sprite->draw_start.y;
+	texture = &vars->textures[4];
+	while (y < sprite->draw_end.y)
+	{
+		d = (y) * 256 - param->win_height * 128 + sprite->height * 128;
+		sprite->tex.y = ((d * TEX_HEIGHT) / sprite->height) / 256;
+		color = *(uint32_t *)(texture->addr
+				+ texture->line_length * sprite->tex.y
+				+ sprite->tex.x * (texture->bits_per_pixel / 8));
+		if ((color & 0x00FFFFFF) != 0)
+			my_mlx_pixel_put(vars->screen, x, y, color);
+		y++;
+	}
+}
+
 void	sprite_to_screen(t_vars *vars, t_param *param, t_sprite *sprite)
 {
-	int		d;
-	int		y;
 	int		stripe;
-	t_img	*texture;
 
 	stripe = sprite->draw_start.x;
-	texture = &vars->textures[4];
 	while (stripe < sprite->draw_end.x)
 	{
 		sprite->tex.x = (int)(256 * (stripe - (-sprite->width / 2
@@ -102,20 +120,7 @@ void	sprite_to_screen(t_vars *vars, t_param *param, t_sprite *sprite)
 		if ((sprite->transform.y > 0) && (stripe > 0) &&
 				(stripe < param->win_width) &&
 				(sprite->transform.y < vars->data->zbuffer[stripe]))
-		{
-			y = sprite->draw_start.y;
-			while (y < sprite->draw_end.y)
-			{
-				d = (y) * 256 - param->win_height * 128 + sprite->height * 128;
-				sprite->tex.y = ((d * TEX_HEIGHT) / sprite->height) / 256;
-				uint32_t color = *(uint32_t *)(texture->addr
-						+ texture->line_length * sprite->tex.y
-						+ sprite->tex.x * (texture->bits_per_pixel / 8));
-				if ((color & 0x00FFFFFF) != 0)
-				my_mlx_pixel_put(vars->screen, stripe, y, color);
-				y++;
-			}
-		}
+			sprite_to_screen2(vars, param, sprite, stripe);
 		stripe++;
 	}
 }
