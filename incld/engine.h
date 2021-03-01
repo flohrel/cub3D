@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 20:02:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 01:41:16 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 01:42:34 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ void	get_stripe(t_data *data, t_param *param);
 void	get_texture_coor(t_data *data);
 void	texture_map(t_vars *vars, t_data *data, int x);
 void	get_fps(t_vars *vars, t_time *time);
+
+/*
+**		sprite.c
+*/
+void	get_sprite_dist(t_vars *vars, t_data *data);
 
 /*
 **		cam_move.c

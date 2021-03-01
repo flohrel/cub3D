@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 20:00:25 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 01:42:17 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int		render_next_frame(t_vars *vars)
 	screen = vars->screen;
 	ft_bzero(screen->addr, screen->line_length * vars->param->win_height);
 	raycaster(vars, vars->data, vars->param, vars->param->map);
+	get_sprite_dist(vars, vars->data);
 	get_input(vars, vars->time, vars->kbflags);
 	mlx_put_image_to_window(vars->mlx, vars->win, screen->image, 0, 0);
 	get_fps(vars, vars->time);

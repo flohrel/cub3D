@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 04:54:10 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 20:09:55 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 00:36:48 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		add_sprite(t_vars *vars, int x, int y)
 		return (ERROR);
 	new_sprite->pos.x = (float)x;
 	new_sprite->pos.y = (float)y;
+	new_sprite->distance = 0;
 	new_lst = ft_lstnew(new_sprite);
 	if (!new_lst)
 		return (ERROR);
