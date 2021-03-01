@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/02/28 20:15:23 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 02:10:27 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,16 @@ typedef struct	s_time
 typedef struct	s_sprite
 {
 	t_vect		pos;
+	t_vect		pos2;
+	double		invdet;
+	t_vect		transform;
+	int			screenx;
+	int			height;
+	int			width;
+	t_vect		draw_start;
+	t_vect		draw_end;
+	float		distance;
+	t_ivect		tex;
 }				t_sprite;
 
 typedef struct	s_param

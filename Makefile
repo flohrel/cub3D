@@ -15,6 +15,7 @@ SRC			=	main.c \
 				parse_map2.c \
 				raycaster.c \
 				raycaster2.c \
+				sprite.c \
 				cam_move.c \
 				cam_move2.c \
 				flag.c \
