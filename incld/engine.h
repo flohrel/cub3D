@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 20:02:46 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 01:42:34 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 02:38:55 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	get_fps(t_vars *vars, t_time *time);
 /*
 **		sprite.c
 */
-void	get_sprite_dist(t_vars *vars, t_data *data);
+void	draw_sprites(t_vars *vars, t_param *param, t_data *data);
 
 /*
 **		cam_move.c
