@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 02:39:05 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 17:19:03 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ int		render_next_frame(t_vars *vars)
 	t_img	*screen;
 
 	screen = vars->screen;
-	ft_bzero(screen->addr, screen->line_length * vars->param->win_height);
+	mlx_clear_window(vars->mlx, vars->win);
+//	ft_bzero(screen->addr, screen->line_length * vars->param->win_height);
 	raycaster(vars, vars->data, vars->param, vars->param->map);
 	draw_sprites(vars, vars->param, vars->data);
 	get_input(vars, vars->time, vars->kbflags);
