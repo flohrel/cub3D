@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:02:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 19:37:10 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/02 19:23:34 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		parser(t_vars *vars, int ac, char **av)
 	else if (ac == 3)
 	{
 		if (!ft_strncmp(av[2], "--save", 6))
-			param->save = true;
+			vars->save = true;
 		else
 			return (error_handler("Bad argument"));
 	}

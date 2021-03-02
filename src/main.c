@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 19:38:27 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/02 19:28:00 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,18 @@ void	get_input(t_vars *vars, t_time *time, int kbflags)
 int		render_next_frame(t_vars *vars)
 {
 	t_img	*screen;
+	t_param	*param;
 
 	screen = vars->screen;
+	param = vars->param;
 	mlx_clear_window(vars->mlx, vars->win);
-	raycaster(vars, vars->data, vars->param, vars->param->map);
-	draw_sprites(vars, vars->param, vars->data);
+	raycaster(vars, vars->data, param, param->map);
+	draw_sprites(vars, param, vars->data);
+	if (vars->save == true)
+	{
+		data_to_bmp(param, screen);
+		exit_program(vars);
+	}
 	get_input(vars, vars->time, vars->kbflags);
 	mlx_put_image_to_window(vars->mlx, vars->win, screen->image, 0, 0);
 	get_fps(vars, vars->time);

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 17:10:50 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 20:07:49 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/01 23:33:32 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ typedef struct	s_param
 	char		*texture_path[5];
 	char		flags;
 	t_ivect		pos;
-	bool		save;
 }				t_param;
 
 typedef struct	s_vars
@@ -111,6 +110,7 @@ typedef struct	s_vars
 	t_list		*sprites;
 	char		**map;
 	int			kbflags;
+	bool		save;
 }				t_vars;
 
 #endif

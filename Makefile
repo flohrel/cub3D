@@ -23,7 +23,8 @@ SRC			=	main.c \
 				keyboard.c \
 				image.c \
 				utils.c \
-				init.c
+				init.c \
+				bitmap.c
 LIB			=	libft.a
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)
 

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 18:51:44 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 19:48:22 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/02 19:24:10 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_vars(t_vars *vars, t_param *param)
 	int		i;
 
 	errno = 0;
-	param->save = false;
+	vars->save = false;
 	i = -1;
 	while (++i < 5)
 	{
