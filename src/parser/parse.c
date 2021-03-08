@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:02:30 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/02 19:23:34 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/08 16:53:48 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		parser(t_vars *vars, int ac, char **av)
 		return (error_handler("Wrong number of argument"));
 	else if (ac == 3)
 	{
-		if (!ft_strncmp(av[2], "--save", 6))
+		if (!ft_strcmp(av[2], "--save"))
 			vars->save = true;
 		else
 			return (error_handler("Bad argument"));

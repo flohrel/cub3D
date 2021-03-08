@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 04:55:35 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/02 19:27:54 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/08 17:00:15 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void			sort_sprites(t_list **sprite_lst);
 */
 int				init_data(t_vars *vars, t_param *param,
 					t_data *data, t_time *time);
-void			init_vars(t_vars *vars, t_param *param);
+void			init_vars(t_vars *vars, t_param *param,
+					t_data *data, t_img *screen);
 
 /*
 **		bitmap.c

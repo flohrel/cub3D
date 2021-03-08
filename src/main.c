@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:47:25 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/02 19:28:00 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/08 16:58:57 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int		new_window(t_vars *vars)
 	t_param	*param;
 
 	param = vars->param;
-	vars->mlx = mlx_init();
-	if (!vars->mlx)
-		exit_program(vars);
 	get_screen_size(vars, vars->param);
 	vars->win = mlx_new_window(vars->mlx, param->win_width,
 		param->win_height, "cub3D");
@@ -58,12 +55,6 @@ int		render_next_frame(t_vars *vars)
 	param = vars->param;
 	mlx_clear_window(vars->mlx, vars->win);
 	raycaster(vars, vars->data, param, param->map);
-	draw_sprites(vars, param, vars->data);
-	if (vars->save == true)
-	{
-		data_to_bmp(param, screen);
-		exit_program(vars);
-	}
 	get_input(vars, vars->time, vars->kbflags);
 	mlx_put_image_to_window(vars->mlx, vars->win, screen->image, 0, 0);
 	get_fps(vars, vars->time);
@@ -82,13 +73,15 @@ int		main(int ac, char **av)
 	vars.data = &data;
 	vars.time = &time;
 	vars.param = &param;
-	init_vars(&vars, &param);
+	init_vars(&vars, &param, &data, &screen);
 	if (parser(&vars, ac, av) == -1 ||
-		new_window(&vars) == -1 ||
+		(vars.save == false && new_window(&vars) == -1) ||
 		new_screen(&vars, &screen, param.win_width, param.win_height) == -1 ||
 		load_texture(&vars, &param) == -1 ||
 		init_data(&vars, vars.param, vars.data, vars.time))
 		return (exit_program(&vars));
+	if (vars.save == true)
+		raycaster(&vars, &data, &param, param.map);
 	mlx_hook(vars.win, 2, (1L << 0), key_press, &(vars.kbflags));
 	mlx_hook(vars.win, 3, (1L << 1), key_release, &(vars.kbflags));
 	mlx_hook(vars.win, EXIT_EVENT, EXIT_WIN_MASK, exit_program, &vars);

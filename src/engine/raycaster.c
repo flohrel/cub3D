@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:35:07 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 19:56:04 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/08 15:21:12 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,12 @@ int		raycaster(t_vars *vars, t_data *data, t_param *param, int **map)
 		get_texture_coor(data);
 		texture_map(vars, data, x);
 		data->zbuffer[x] = data->perpwalldist;
+	}
+	draw_sprites(vars, param, data);
+	if (vars->save == true)
+	{
+		data_to_bmp(param, vars->screen);
+		exit_program(vars);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:38:45 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 19:46:03 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/08 16:02:53 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int		exit_program(t_vars *vars)
 	t_img	*screen;
 
 	free_textures(vars, vars->param);
-	free_map(vars->param);
+	if (vars->data->zbuffer)
+		free(vars->data->zbuffer);
+	if (vars->param->map)
+		free_map(vars->param);
 	ft_lstclear(&vars->sprites, del_sprite);
 	free(vars->data->zbuffer);
 	screen = vars->screen;

@@ -6,7 +6,7 @@
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 04:54:10 by flohrel           #+#    #+#             */
-/*   Updated: 2021/03/01 19:46:26 by flohrel          ###   ########.fr       */
+/*   Updated: 2021/03/05 15:20:13 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int		add_sprite(t_vars *vars, int x, int y)
 	new_sprite = ft_calloc(1, sizeof(t_sprite));
 	if (!new_sprite)
 		return (ERROR);
-	new_sprite->pos.x = (float)x;
-	new_sprite->pos.y = (float)y;
+	new_sprite->pos.x = (float)x + 0.5;
+	new_sprite->pos.y = (float)y + 0.5;
 	new_sprite->distance = 0;
 	new_lst = ft_lstnew(new_sprite);
 	if (!new_lst)
@@ -60,6 +60,7 @@ int		add_sprite(t_vars *vars, int x, int y)
 
 void	sort_sprites(t_list **sprite_lst)
 {
+	t_sprite	*sprite;
 	t_list		*lptr;
 	t_list		*next;
 	bool		is_sort;
@@ -69,16 +70,15 @@ void	sort_sprites(t_list **sprite_lst)
 	{
 		is_sort = true;
 		lptr = *sprite_lst;
-		while ((next = lptr->next) != NULL)
+		while (lptr && (next = lptr->next) != NULL)
 		{
 			if (((t_sprite *)lptr->content)->distance >
 				((t_sprite *)next->content)->distance)
 			{
 				is_sort = false;
-				lptr->next = next->next;
-				next->next = lptr;
-				if (*sprite_lst == lptr)
-					*sprite_lst = next;
+				sprite = next->content;
+				next->content = lptr->content;
+				lptr->content = sprite;
 			}
 			else
 				lptr = next;
