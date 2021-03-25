@@ -12,6 +12,16 @@
 
 #include "parse.h"
 
+int		is_number(char *str)
+{
+	while (*str)
+	{
+		if (!ft_isdigit(*str++))
+			return (0);
+	}
+	return (1);
+}
+
 int		parse_rgb(uint32_t *color, char *rgb_str)
 {
 	char	**rgb;
@@ -21,7 +31,9 @@ int		parse_rgb(uint32_t *color, char *rgb_str)
 
 	*color = 0xFF000000;
 	rgb = ft_split(rgb_str, ',');
-	if (!rgb[0] || !rgb[1] || !rgb[2])
+	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
+		return (-1);
+	if (!is_number(rgb[0]) || !is_number(rgb[1]) || !is_number(rgb[2]))
 		return (-1);
 	red = ft_atoi(rgb[0]);
 	green = ft_atoi(rgb[1]);
@@ -39,12 +51,13 @@ int		parse_rgb(uint32_t *color, char *rgb_str)
 
 int		get_resolution(t_param *param, char **sstr)
 {
-	if (!sstr[1] || !sstr[2])
+	if (!sstr[0] || !sstr[1] || sstr[2])
 		return (-1);
-	param->win_width = ft_atoi(sstr[1]);
-	param->win_height = ft_atoi(sstr[2]);
+	if (!is_number(sstr[0]) || !is_number(sstr[1]))
+		return (-1);
+	param->win_width = ft_atoi(sstr[0]);
+	param->win_height = ft_atoi(sstr[1]);
 	if (param->win_width <= 0 || param->win_height <= 0)
 		return (-1);
-	clear_flag((int *)&param->flags, R);
 	return (0);
 }

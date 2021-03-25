@@ -30,7 +30,6 @@ void	init_vars(t_vars *vars, t_param *param, t_data *data, t_img *screen)
 {
 	int		i;
 
-	errno = 0;
 	vars->save = false;
 	i = -1;
 	while (++i < 5)
@@ -48,4 +47,5 @@ void	init_vars(t_vars *vars, t_param *param, t_data *data, t_img *screen)
 	vars->sprites = NULL;
 	screen->image = NULL;
 	data->zbuffer = NULL;
+	errno = 0;
 }

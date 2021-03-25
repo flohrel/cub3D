@@ -12,23 +12,37 @@
 
 #include "parse.h"
 
+int		flag_handle(int *field, int flag)
+{
+	if (!check_flag(*field, flag))
+		return (-1);
+	else
+	{
+		clear_flag(field, flag);
+		return (0);
+	}
+}
+
 int		set_parameter(t_param *param, char **sstr)
 {
-	if (!ft_strcmp(sstr[0], "R"))
-		return (get_resolution(param, sstr));
-	else if (!ft_strcmp(sstr[0], "NO") && clear_flag((int *)&param->flags, NO))
+	int *field;
+
+	field = (int *)&param->flags;
+	if (!ft_strcmp(sstr[0], "R") && !flag_handle(field, R))
+		return (get_resolution(param, &sstr[1]));
+	else if (!ft_strcmp(sstr[0], "NO") && !flag_handle(field, NO))
 		param->texture_path[0] = ft_strdup(sstr[1]);
-	else if (!ft_strcmp(sstr[0], "SO") && clear_flag((int *)&param->flags, SO))
+	else if (!ft_strcmp(sstr[0], "SO") && !flag_handle(field, SO))
 		param->texture_path[1] = ft_strdup(sstr[1]);
-	else if (!ft_strcmp(sstr[0], "EA") && clear_flag((int *)&param->flags, EA))
+	else if (!ft_strcmp(sstr[0], "EA") && !flag_handle(field, EA))
 		param->texture_path[2] = ft_strdup(sstr[1]);
-	else if (!ft_strcmp(sstr[0], "WE") && clear_flag((int *)&param->flags, WE))
+	else if (!ft_strcmp(sstr[0], "WE") && !flag_handle(field, WE))
 		param->texture_path[3] = ft_strdup(sstr[1]);
-	else if (!ft_strcmp(sstr[0], "S") && clear_flag((int *)&param->flags, S))
+	else if (!ft_strcmp(sstr[0], "S") && !flag_handle(field, S))
 		param->texture_path[4] = ft_strdup(sstr[1]);
-	else if (!ft_strcmp(sstr[0], "F") && clear_flag((int *)&param->flags, F))
+	else if (!ft_strcmp(sstr[0], "F") && !flag_handle(field, F))
 		return (parse_rgb(&param->floor_color, sstr[1]));
-	else if (!ft_strcmp(sstr[0], "C") && clear_flag((int *)&param->flags, C))
+	else if (!ft_strcmp(sstr[0], "C") && !flag_handle(field, C))
 		return (parse_rgb(&param->ceil_color, sstr[1]));
 	else
 		return (-1);
