@@ -67,6 +67,12 @@ int		parse_param(int fd, t_param *param)
 		free(line);
 		free_sstr(sstr);
 	}
+	if (ret == -1)
+	{
+		while (!(line = NULL) && get_next_line(fd, &line) > 0)
+			free(line);
+		free(line);
+	}
 	return (ret);
 }
 

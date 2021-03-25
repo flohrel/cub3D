@@ -1,4 +1,4 @@
-R 1200 720
+R 3200 72000
 
 NO ./rsrc/textures/wall1.xpm
 SO ./rsrc/textures/wall2.xpm
