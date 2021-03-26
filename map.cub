@@ -1,9 +1,9 @@
 R 3200 72000
 
-NO ./rsrc/textures/wall1.xpm
-SO ./rsrc/textures/wall2.xpm
-WE ./rsrc/textures/wall3.xpm
-EA ./rsrc/textures/wall4.xpm
+NO ./rsrc/textures/wall256.xpm
+SO ./rsrc/textures/wall256.xpm
+WE ./rsrc/textures/wall256.xpm
+EA ./rsrc/textures/wall256.xpm
 S ./rsrc/textures/bad_simon.xpm
 F 220,100,0
 C 225,30,0
