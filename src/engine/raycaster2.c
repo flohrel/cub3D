@@ -55,7 +55,7 @@ void	get_texture_coor(t_data *data)
 	data->xwall -= floor(data->xwall);
 	data->tex.x = (int)(data->xwall * (double)TEX_WIDTH);
 	if (((data->side < 2) && (data->raydir.x > 0)) ||
-		((data->side > 1) && (data->raydir.x < 0)))
+		((data->side > 1) && (data->raydir.y < 0)))
 		data->tex.x = TEX_WIDTH - data->tex.x - 1;
 }
 
