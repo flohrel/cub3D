@@ -4,7 +4,7 @@ NO ./rsrc/textures/wall1.xpm
 SO ./rsrc/textures/wall2.xpm
 WE ./rsrc/textures/wall3.xpm
 EA ./rsrc/textures/wall4.xpm
-S ./rsrc/textures/barrel.xpm
+S ./rsrc/textures/bad_simon.xpm
 F 220,100,0
 C 225,30,0
 
