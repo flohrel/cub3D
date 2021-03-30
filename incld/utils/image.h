@@ -15,9 +15,6 @@
 
 # include "cub3d.h"
 
-# define TEX_WIDTH	256
-# define TEX_HEIGHT	256
-
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		xpm_to_img(t_vars *vars, t_img *texture, char *filename);
 int		load_texture(t_vars *vars, t_param *param);

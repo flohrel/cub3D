@@ -20,9 +20,6 @@
 # include "utils/color.h"
 # include "utils/image.h"
 
-# define TEX_WIDTH	256
-# define TEX_HEIGHT	256
-
 /*
 **		raycaster.c
 */
@@ -35,7 +32,7 @@ void	draw_stripe(t_vars *vars, int x);
 void	get_stripe(t_data *data, t_param *param);
 void	get_texture_coor(t_data *data);
 void	texture_map(t_vars *vars, t_data *data, int x);
-void	get_fps(t_vars *vars, t_time *time);
+void	get_fps(t_time *time);
 
 /*
 **		sprite.c

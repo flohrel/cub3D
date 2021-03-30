@@ -57,7 +57,7 @@ int		render_next_frame(t_vars *vars)
 	raycaster(vars, vars->data, param, param->map);
 	get_input(vars, vars->time, vars->kbflags);
 	mlx_put_image_to_window(vars->mlx, vars->win, screen->image, 0, 0);
-	get_fps(vars, vars->time);
+	get_fps(vars->time);
 	return (0);
 }
 

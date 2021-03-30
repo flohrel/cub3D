@@ -83,16 +83,11 @@ void	texture_map(t_vars *vars, t_data *data, int x)
 	}
 }
 
-void	get_fps(t_vars *vars, t_time *time)
+void	get_fps(t_time *time)
 {
-	char	*fps;
-
 	time->old_time = time->time;
 	time->time = clock();
 	time->frame_time = (time->time - time->old_time) / CLOCKS_PER_SEC;
-	fps = ft_itoa(1 / time->frame_time);
-	mlx_string_put(vars->mlx, vars->win, 15, 15, WHITE, fps);
 	time->move_speed = time->frame_time * 10.0;
 	time->rot_speed = time->frame_time * 5.0;
-	free(fps);
 }
