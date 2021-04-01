@@ -49,7 +49,7 @@ int		parse_rgb(uint32_t *color, char *rgb_str)
 	return (0);
 }
 
-int		get_resolution(t_param *param, char **sstr)
+int		get_resolution(t_vars *vars, t_param *param, char **sstr)
 {
 	if (!sstr[0] || !sstr[1] || sstr[2])
 		return (-1);
@@ -59,5 +59,6 @@ int		get_resolution(t_param *param, char **sstr)
 	param->win_height = ft_atoi(sstr[1]);
 	if (param->win_width <= 0 || param->win_height <= 0)
 		return (-1);
+	get_screen_size(vars, vars->param);
 	return (0);
 }

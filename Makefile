@@ -37,7 +37,7 @@ UNAME		:=	$(shell uname -s)
 
 ifeq ($(UNAME),Linux)
 	INCFLAGS += -I/usr/include -I./$(LIBDIR)/mlx_Linux -O3
-	LFLAGS += -L./$(LIBDIR)/mlx_Linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+	LFLAGS += -L./$(LIBDIR)/mlx_Linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
 	SRC += linux.c
 endif
 ifeq ($(UNAME),Darwin)
@@ -60,6 +60,9 @@ $(OBJDIR)/%.o:	%.c | $(OBJDIR)
 
 $(NAME):		$(OBJ)
 				make -C $(LIBDIR)/libft
+ifeq ($(UNAME),Linux)
+	make -C $(LIBDIR)/mlx_Linux
+endif
 				$(CC) $(CFLAGS) -o $@ $^ $(LFLAGS)
 
 $(OBJDIR):
@@ -70,8 +73,12 @@ bonus:
 
 clean:
 				$(RM) $(OBJ)
+ifeq ($(UNAME),Linux)
+	make -C $(LIBDIR)/mlx_Linux clean
+endif
 
 fclean:			clean
 				$(RM) $(NAME) $(OBJDIR)
+				$(RM) rsrc/screenshot.bmp
 
 re:				fclean all

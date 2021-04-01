@@ -23,13 +23,13 @@ int		flag_handle(int *field, int flag)
 	}
 }
 
-int		set_parameter(t_param *param, char **sstr)
+int		set_parameter(t_vars *vars, t_param *param, char **sstr)
 {
 	int *field;
 
 	field = (int *)&param->flags;
 	if (!ft_strcmp(sstr[0], "R") && !flag_handle(field, R))
-		return (get_resolution(param, &sstr[1]));
+		return (get_resolution(vars, param, &sstr[1]));
 	else if (!ft_strcmp(sstr[0], "NO") && !flag_handle(field, NO))
 		param->texture_path[0] = ft_strdup(sstr[1]);
 	else if (!ft_strcmp(sstr[0], "SO") && !flag_handle(field, SO))
@@ -49,7 +49,7 @@ int		set_parameter(t_param *param, char **sstr)
 	return (0);
 }
 
-int		parse_param(int fd, t_param *param)
+int		parse_param(t_vars *vars, int fd, t_param *param)
 {
 	int		ret;
 	char	*line;
@@ -62,7 +62,7 @@ int		parse_param(int fd, t_param *param)
 		line = NULL;
 		ret = get_next_line(fd, &line);
 		sstr = ft_split(line, ' ');
-		if (*sstr && set_parameter(param, sstr) == -1)
+		if (*sstr && set_parameter(vars, param, sstr) == -1)
 			ret = error_handler("Bad .cub file - bad parameter");
 		free(line);
 		free_sstr(sstr);
@@ -94,7 +94,7 @@ int		parser(t_vars *vars, int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (error_handler(av[1]));
-	if (parse_param(fd, param) == -1)
+	if (parse_param(vars, fd, param) == -1)
 		return (ERROR);
 	if (param->flags)
 		return (error_handler("Bad .cub file - parameter missing"));

@@ -20,7 +20,7 @@ int		parse_map(int fd, t_vars *vars, t_param *param);
 int		check_borders(t_vars *vars, t_param *param);
 void	free_sstr(char **sstr);
 int		error_handler(char *error_msg);
-int		get_resolution(t_param *param, char **sstr);
+int		get_resolution(t_vars* vars, t_param *param, char **sstr);
 int		parse_rgb(uint32_t *color, char *rgb_str);
 
 #endif

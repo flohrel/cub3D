@@ -17,7 +17,6 @@ int		new_window(t_vars *vars)
 	t_param	*param;
 
 	param = vars->param;
-	get_screen_size(vars, vars->param);
 	vars->win = mlx_new_window(vars->mlx, param->win_width,
 		param->win_height, "cub3D");
 	if (!vars->win)
