@@ -72,7 +72,7 @@ void	sort_sprites(t_list **sprite_lst)
 		lptr = *sprite_lst;
 		while (lptr && (next = lptr->next) != NULL)
 		{
-			if (((t_sprite *)lptr->content)->distance >
+			if (((t_sprite *)lptr->content)->distance <
 				((t_sprite *)next->content)->distance)
 			{
 				is_sort = false;
