@@ -5,7 +5,7 @@ SO ./rsrc/textures/wall256.xpm
 WE ./rsrc/textures/wall256.xpm
 EA ./rsrc/textures/wall256.xpm
 S ./rsrc/textures/simon256.xpm
-F 220,100,0
+F -220,100,0
 C 225,30,0
 
       111111111111111111111111111

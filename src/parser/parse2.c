@@ -31,10 +31,12 @@ int		parse_rgb(uint32_t *color, char *rgb_str)
 
 	*color = 0xFF000000;
 	rgb = ft_split(rgb_str, ',');
-	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
+	if ((!rgb[0] || !rgb[1] || !rgb[2] || rgb[3]) ||
+		(!is_number(rgb[0]) || !is_number(rgb[1]) || !is_number(rgb[2])))
+	{
+		free_sstr(rgb);
 		return (-1);
-	if (!is_number(rgb[0]) || !is_number(rgb[1]) || !is_number(rgb[2]))
-		return (-1);
+	}
 	red = ft_atoi(rgb[0]);
 	green = ft_atoi(rgb[1]);
 	blue = ft_atoi(rgb[2]);
