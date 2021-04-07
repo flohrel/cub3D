@@ -91,9 +91,8 @@ int		get_position(t_param *param, t_data *data, char **map)
 
 	pos.y = -1;
 	found = false;
-	while (++pos.y < param->map_height)
+	while (++pos.y < param->map_height && (pos.x = -1))
 	{
-		pos.x = -1;
 		while (map[pos.y][++(pos.x)])
 		{
 			if (!ft_strchr("012NSEW ", map[pos.y][pos.x]))
@@ -109,6 +108,8 @@ int		get_position(t_param *param, t_data *data, char **map)
 			}
 		}
 	}
+	if (found == false)
+		return (ERROR);
 	return (SUCCESS);
 }
 

@@ -22,33 +22,39 @@ int		is_number(char *str)
 	return (1);
 }
 
-int		parse_rgb(uint32_t *color, char *rgb_str)
+int		parse_rgb2(char **rgb, uint32_t *color)
 {
-	char	**rgb;
 	int		red;
 	int		green;
 	int		blue;
 
-	*color = 0xFF000000;
-	rgb = ft_split(rgb_str, ',');
-	if ((!rgb[0] || !rgb[1] || !rgb[2] || rgb[3]) ||
-		(!is_number(rgb[0]) || !is_number(rgb[1]) || !is_number(rgb[2])))
-	{
-		free_sstr(rgb);
-		return (-1);
-	}
 	red = ft_atoi(rgb[0]);
 	green = ft_atoi(rgb[1]);
 	blue = ft_atoi(rgb[2]);
 	if ((red < 0 || red > 255) ||
 		(green < 0 || green > 255) ||
 		(blue < 0 || blue > 255))
-		return (-1);
+		return (ERROR);
 	*color |= red << 16;
 	*color |= green << 8;
 	*color |= blue;
+	return (SUCCESS);
+}
+
+int		parse_rgb(uint32_t *color, char *rgb_str)
+{
+	char	**rgb;
+	int		ret;
+
+	*color = 0xFF000000;
+	rgb = ft_split(rgb_str, ',');
+	if ((!rgb[0] || !rgb[1] || !rgb[2] || rgb[3]) ||
+		(!is_number(rgb[0]) || !is_number(rgb[1]) || !is_number(rgb[2])))
+		ret = -1;
+	else
+		ret = parse_rgb2(rgb, color);
 	free_sstr(rgb);
-	return (0);
+	return (ret);
 }
 
 int		get_resolution(t_vars *vars, t_param *param, char **sstr)
