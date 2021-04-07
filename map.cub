@@ -1,12 +1,12 @@
 R 800 600
 
-NO ./rsrc/textures/wall256.xpm
-SO ./rsrc/textures/wall256.xpm
-WE ./rsrc/textures/wall256.xpm
-EA ./rsrc/textures/wall256.xpm
-S ./rsrc/textures/simon256.xpm
-F 220,100,0
-C 225,30,0
+NO ./rsrc/textures/wall1.xpm
+SO ./rsrc/textures/wall2.xpm
+WE ./rsrc/textures/wall3.xpm
+EA ./rsrc/textures/wall4.xpm
+S ./rsrc/textures/barrel.xpm
+C 220,100,67
+F 32,32,32
 
       111111111111111111111111111
       100000000000110000000000001

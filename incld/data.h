@@ -17,8 +17,8 @@
 # include <stdbool.h>
 # include "libft/list.h"
 
-# define TEX_WIDTH	256
-# define TEX_HEIGHT	256
+# define TEX_WIDTH	64
+# define TEX_HEIGHT	64
 
 typedef struct	s_img
 {
