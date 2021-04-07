@@ -14,8 +14,8 @@
 
 int		init_data(t_vars *vars, t_param *param, t_data *data, t_time *time)
 {
-	data->pos.x = param->map_width - param->pos.x - 1;
-	data->pos.y = param->pos.y;
+	data->pos.x = param->map_width - param->pos.x - 0.5;
+	data->pos.y = param->pos.y + 0.5;
 	time->time = 0;
 	time->old_time = 0;
 	vars->kbflags = 0;

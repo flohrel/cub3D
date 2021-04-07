@@ -12,6 +12,7 @@
 
 #include "engine.h"
 
+#include <stdio.h>
 void	init_vect(t_data *data)
 {
 	data->raydir.x = data->dir.x + data->plane.x * data->xcam;
